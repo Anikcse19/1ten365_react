@@ -141,7 +141,7 @@ export default function Home() {
                 করতে হলে এজেন্ট লিস্টে হোয়াটসাপ আইকন উপরে ক্লিক করুন অথবা ফোন
                 নাম্বার টি মোবাইলে সেভ করে তাকে হোয়াটসাপ এ মসেজ পাঠাতে পারবেন।
                 হোয়াটসাপ এপ টি আপনার মোবাইলে আগে থেকেই থাকতে হবে। না থাকলে গুগুল
-                প্লে থেকে ইন্সটল করে নিন।<p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline text-center"> অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
+                প্লে থেকে ইন্সটল করে নিন।<p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline text-center cursor-pointer"> অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
               </span>
             </div>
           </div>
@@ -162,19 +162,19 @@ export default function Home() {
           <div className=" bg-gray-600 px-5 py-10 md:py-12">
             <div className="w-full bg-white px-5 md:px-12 py-3 border border-orange-500 text-center md:text-left">
               <span className="text-base md:text-xl">
-                <p onClick={()=>navigate('/admins/superAgent')} className="text-blue-600 underline">
+                <p onClick={()=>navigate('/admins/superAgent')} className="text-blue-600 underline cursor-pointer">
                   অনলাইন সুপার এজেন্ট লিস্টঃ
                 </p>
                 সুপার এজেন্ট রা, ইউজার একাউন্ট এবং মাষ্টার এজেন্ট একাউন্ট খুলে
                 দিতে পারেন। কোন সুপার এজেন্ট এর নামে অভিযোগ থাকলে - সরাসরি এডমিন
                 কে জানাতে হবে। উপরে মেনু তে এডমিন লিষ্ট দেয়া আছে।
-                <p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline">
+                <p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline cursor-pointer">
                   অনলাইন মাষ্টার এজেন্ট লিস্টঃ
                 </p>
                 অনলাইন মাষ্টার এজেন্ট রা, শুধু ইউজার একাউন্ট একাউন্ট খুলে দিতে
                 পারেন। কোন মাষ্টার এজেন্ট এর নামে অভিযোগ থাকলে - সরাসরি সুপার
                 এজেন্ট এর কাছে অভিযোগ করতে হবে।
-                <p onClick={()=>navigate('/faq/complainAgent')} className="text-blue-600 underline">
+                <p onClick={()=>navigate('/faq/complainAgent')} className="text-blue-600 underline cursor-pointer">
                   বিস্তারিত জানতে এই লিঙ্ক এ ক্লিক করুন।
                 </p>
               
