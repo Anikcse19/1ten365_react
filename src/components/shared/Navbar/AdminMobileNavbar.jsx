@@ -8,31 +8,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { images } from "../../../../config";
 
 const Menu = (props) => {
-<<<<<<< HEAD
   const { children, items, active } = props;
   const [isOpened, setIsOpened] = useState(true);
   const location = useLocation();
   const { pathname } = location;
 
   const navigate = useNavigate();
-=======
-  const { children, items } = props;
-  const [isOpened, setIsOpened] = useState(false);
-  const router=useLocation()
-  const navigate=useNavigate()
-
-  console.log(router.pathname);
->>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
   return (
     <div className="border-b border-slate-800 mt-2">
       <button
-<<<<<<< HEAD
         className={`w-full flex items-center justify-between text-white p-2 rounded-lg hover:bg-red-500 hover:text-white duration-150 
         ${pathname.startsWith(active) && "bg-red-500" }
         `}
-=======
-        className={`w-full flex items-center justify-between text-white p-2 rounded-lg    duration-150 `}
->>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
         onClick={() => setIsOpened(!isOpened)}
       >
         <div className={`flex items-center gap-x-2`}>{children}</div>
@@ -182,13 +169,8 @@ const AdminMobileNavbar = () => {
                     </Link>
                   </div>
                 ))}
-<<<<<<< HEAD
                 <li className="list-none">
                   <Menu items={generalQsns} active={"/Faq"}>সাধারণ প্রশ্ন উত্তর</Menu>
-=======
-                <li >
-                  <Menu   items={generalQsns}>সাধারণ প্রশ্ন উত্তর</Menu>
->>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
                 </li>
                 <li className="list-none">
                   <Menu items={agentListMenus} active={"/Admins"}>এজেন্ট লিস্ট</Menu>
