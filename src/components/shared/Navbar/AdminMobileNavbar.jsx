@@ -67,7 +67,7 @@ const AdminMobileNavbar = () => {
 
   const navigation = [
     {
-      href: "/HomePage",
+      href: "/adminHomePage",
       name: "হোম পেইজ",
       icon: "",
     },
