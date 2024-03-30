@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { HiInformationCircle } from "react-icons/hi";
-import { IoLogoWhatsapp } from "react-icons/io";
+
 import { useNavigate } from "react-router-dom";
 import { images } from "../../config";
 import Logo from "../components/shared/Logo";
@@ -30,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-[#e8ce25e8] pb-10 lg:py-10">
+    <div className="bg-[#FBD900] pb-5 lg:py-10">
       <>
         <div className="hidden lg:block">
           <Logo />
@@ -43,33 +44,33 @@ export default function Home() {
       </>
 
       {/* quick master agent number */}
-      <div className="w-full my-10 ">
-        <div className="w-[90%] md:w-[70%] bg-[#393939] mx-auto rounded-md">
+      <div className="w-full my-2 ">
+        <div className="w-[95%] md:w-[70%] bg-[#393939]  mx-auto rounded-md">
           {/* title */}
-          <div className="w-full rounded-md bg-[#292929] p-4 flex items-center gap-3">
+          <div className="w-full rounded-md bg-[#292929] p-1 md:p-4 flex items-center gap-3">
             <HiInformationCircle className="text-blue-500 text-2xl" />
-            <p className="text-white font-semibold md:font-bold text-base md:text-xl">
+            <p className="text-white font-semibold md:font-bold  text-lg md:text-2xl">
               Quick Master Agent Number
             </p>
           </div>
           {/* body */}
-          <div className="flex justify-center  items-center w-full h-full bg-gray-600 py-10 md:py-16">
-            <div className="p-3 bg-white">
-              <div className="bg-gray-500 py-3 w-[200px] md:w-[300px] px-2">
-                <div className="flex flex-col gap-2 justify-center">
+          <div className="flex justify-center  items-center w-full h-full bg-gray-600 py-3 md:py-16">
+            <div className="p-1 md:p-3 bg-white">
+              <div className="bg-gray-300 py-1 md:py-3 w-[250px] md:w-[300px] px-2">
+                <div className="flex flex-col justify-center gap-2 ">
                   {/* agent id */}
                   <div className="flex justify-between items-center">
-                    <span className="text-base md:text-2xl font-bold">
-                      Agent ID
+                    <span className="text-2xl font-bold">
+                      Agent ID:
                     </span>
-                    <span className="text-[#eeff54] font-bold">
+                    <span className="text-[#FF5F00] text-2xl font-bold">
                       {quickAgent?.input_id}
                     </span>
                   </div>
                   {/* what's app number */}
-                  <div className="flex justify-between items-center">
-                    <span className="cursor-pointer">
-                      <IoLogoWhatsapp
+                  <div className="flex justify-between ">
+                    <span className="cursor-pointer bg-green-400 p-1 ml-8">
+                      <FaWhatsapp
                         onClick={() => {
                           window.open(
                             `https://wa.me/${
@@ -79,10 +80,10 @@ export default function Home() {
                             },'_blank'`
                           );
                         }}
-                        className="text-xl md:text-4xl text-[#00F046]"
+                        className="text-xl md:text-4xl text-white "
                       />
                     </span>
-                    <span className="text-[#eeff54] font-bold">
+                    <span className="text-[#FF5F00] text-2xl font-bold">
                       {quickAgent?.profile?.wa_link
                         ? quickAgent?.profile?.wa_link
                         : quickAgent?.profile?.phone}
@@ -96,18 +97,18 @@ export default function Home() {
       </div>
 
       {/* how to open account */}
-      <div className="w-full my-10">
-        <div className="w-[90%] md:w-[70%] bg-gray-600 mx-auto  rounded-md">
+      <div className="w-full my-2">
+        <div className="w-[95%] md:w-[70%] bg-gray-600 mx-auto  rounded-md">
           {/* title */}
-          <div className="w-full rounded-md bg-stone-800 p-4 flex items-center gap-3">
+          <div className="w-full rounded-md bg-stone-800 p-1 md:p-4 flex items-center gap-3">
             <HiInformationCircle className="text-blue-500 text-2xl" />
-            <p className="text-white font-semibold md:font-bold text-base md:text-xl">
+            <p className="text-white font-semibold md:font-bold text-2xl">
               কিভাবে একাউন্ট খুলবেনঃ
             </p>
           </div>
           {/* body */}
-          <div className=" bg-gray-600 px-5 py-10 md:py-12">
-            <div className="w-full bg-white px-5 md:px-12 py-3 border border-orange-500">
+          <div className=" bg-gray-600 px-2 md:px-5 py-2 md:py-12">
+            <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500">
               <p className="text-base md:text-xl text-center md:text-left">
                 1ten এ একাউন্ট করতে হলে আপনার এজেন্ট এর মাধ্যমে একাউন্ট খুলতে
                 হবে। এজেন্ট এর মাধ্যমেই টাকা ডিপোজিট এবং উইথড্র করতে হবে। আপনি
@@ -121,18 +122,18 @@ export default function Home() {
       </div>
 
       {/* Agent List */}
-      <div className="w-full my-10">
-        <div className="w-[90%] md:w-[70%] bg-gray-600 mx-auto  rounded-md">
+      <div className="w-full my-2">
+        <div className="w-[95%] md:w-[70%] bg-gray-600 mx-auto  rounded-md">
           {/* title */}
-          <div className="w-full rounded-md bg-stone-800 p-4 flex items-center gap-3">
+          <div className="w-full rounded-md bg-stone-800 p-1 md:p-4 flex items-center gap-3">
             <HiInformationCircle className="text-blue-500 text-2xl" />
             <p className="text-white font-semibold md:font-bold text-base md:text-xl">
               এজেন্ট লিস্টঃ
             </p>
           </div>
           {/* body */}
-          <div className=" bg-gray-600 px-5 py-10 md:py-12">
-            <div className="w-full bg-white px-5 md:px-12 py-3 border border-orange-500">
+          <div className=" bg-gray-600 px-2 md:px-5 py-2  md:py-12">
+            <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500">
               <span className="text-base md:text-xl text-center md:text-left">
                 একাউন্ট খুলতে নিম্বের অনলাইন এজেন্ট লিস্ট এ ক্লিক করুন। এজেন্ট
                 লিষ্ট এর এজেন্ট দের সাথে ইউজার দের শুধু মাত্র হোয়াটসাপ এর
@@ -149,18 +150,18 @@ export default function Home() {
       </div>
 
       {/* clasiification of agents */}
-      <div className="w-full mt-10">
-        <div className="w-[90%] md:w-[70%] bg-gray-600 mx-auto  rounded-md">
+      <div className="w-full">
+        <div className="w-[95%] md:w-[70%] bg-gray-600 mx-auto  rounded-md">
           {/* title */}
-          <div className="w-full rounded-md bg-stone-800 p-4 flex items-center gap-3">
+          <div className="w-full rounded-md bg-stone-800 p-1 md:p-4 flex items-center gap-3">
             <HiInformationCircle className="text-blue-500 text-2xl" />
             <p className="text-white font-semibold md:font-bold text-base md:text-xl">
               এজেন্ট কয় প্রকারঃ
             </p>
           </div>
           {/* body */}
-          <div className=" bg-gray-600 px-5 py-10 md:py-12">
-            <div className="w-full bg-white px-5 md:px-12 py-3 border border-orange-500 text-center md:text-left">
+          <div className=" bg-gray-600 px-1 md:px-5 py-1 md:py-12">
+            <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500 md:text-left">
               <span className="text-base md:text-xl">
                 <p onClick={()=>navigate('/admins/superAgent')} className="text-blue-600 underline cursor-pointer">
                   অনলাইন সুপার এজেন্ট লিস্টঃ

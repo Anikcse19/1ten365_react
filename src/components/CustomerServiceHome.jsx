@@ -20,13 +20,13 @@ const CustomerServiceHome = () => {
     },
     {
       title: "সুপার এজেন্ট লিষ্টঃ",
-      link:'/SuperAgent',
+      link:'/admins/superAgent',
       des: "এজেন্ট দের সাথে লেনদেন এর আগে 1TEN নিয়ম গুলো জেনে নিন!! **প্রতারনার হাত থেকে বাচতে",
       img: images.superAgentPoster,
     },
     {
       title: "সাব এডমিন লিষ্টঃ",
-      link:'/SubAdmin',
+      link:'/admins/subAdmin',
       des: "এজেন্ট দের সাথে লেনদেন এর আগে 1TEN নিয়ম গুলো জেনে নিন!! **প্রতারনার হাত থেকে বাচতে",
       img: images.subAdminPoster,
     },
@@ -82,7 +82,7 @@ const CustomerServiceHome = () => {
                 </h2>
 
                 <div>
-                  <button onClick={()=>{router('/admins/customerService')}} className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400">
+                  <button onClick={()=>{navigate('/admins/customerService')}} className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400">
                     Read More...কাস্টমার সার্ভিস লিষ্ট
                   </button>
                 </div>

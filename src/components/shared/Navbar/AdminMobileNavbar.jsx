@@ -8,18 +8,31 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { images } from "../../../../config";
 
 const Menu = (props) => {
+<<<<<<< HEAD
   const { children, items, active } = props;
   const [isOpened, setIsOpened] = useState(true);
   const location = useLocation();
   const { pathname } = location;
 
   const navigate = useNavigate();
+=======
+  const { children, items } = props;
+  const [isOpened, setIsOpened] = useState(false);
+  const router=useLocation()
+  const navigate=useNavigate()
+
+  console.log(router.pathname);
+>>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
   return (
     <div className="border-b border-slate-800 mt-2">
       <button
+<<<<<<< HEAD
         className={`w-full flex items-center justify-between text-white p-2 rounded-lg hover:bg-red-500 hover:text-white duration-150 
         ${pathname.startsWith(active) && "bg-red-500" }
         `}
+=======
+        className={`w-full flex items-center justify-between text-white p-2 rounded-lg    duration-150 `}
+>>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
         onClick={() => setIsOpened(!isOpened)}
       >
         <div className={`flex items-center gap-x-2`}>{children}</div>
@@ -92,26 +105,26 @@ const AdminMobileNavbar = () => {
   ];
 
   const generalQsns = [
-    { name: "1Ten প্রক্সী লিঙ্ক", href: "/Faq/ProxyLink", icon: "" },
-    { name: "1Ten তে একাউন্ট খুলবেন?", href: "/Faq/OpenAccount", icon: "" },
-    { name: "এজেন্ট এর নতুন নাম্বার", href: "/Faq/OldNewNumber", icon: "" },
-    { name: "ফোন নাম্বার সার্চ করুন", href: "/Faq/SearchByNumber", icon: "" },
+    { name: "1Ten প্রক্সী লিঙ্ক", href: "/faq/proxyLink", icon: "" },
+    { name: "1Ten তে একাউন্ট খুলবেন?", href: "/faq/openAccount", icon: "" },
+    { name: "এজেন্ট এর নতুন নাম্বার", href: "/faq/oldNewNumber", icon: "" },
+    { name: "ফোন নাম্বার সার্চ করুন", href: "/faq/searchByNumber", icon: "" },
   ];
 
   const agentListMenus = [
-    { name: "এজেন্ট কে ভেরিফাই করুনট", href: "/Admins/VerifyAdmin" },
-    { name: "এজেন্ট লিষ্ট", href: "/Admins/Agent" },
-    { name: "সুপার এজেন্ট লিষ্ট", href: "/Admins/SuperAgent" },
-    // { name: "সাব এজেন্ট লিষ্ট", href: "/Admins/" },
-    { name: "সাব এডমিন লিষ্ট", href: "/Admins/SubAdmin" },
-    { name: "এডমিন লিষ্ট", href: "/Admins/Admin" },
-    { name: "সাইট এডমিন লিষ্ট", href: "/Admins/SiteAdmin" },
-    { name: "কাস্টোমার সার্ভিস লিষ্ট", href: "/Admins/CustomerService" },
+    { name: "এজেন্ট কে ভেরিফাই করুনট", href: "/admins/verifyAdmin" },
+    { name: "এজেন্ট লিষ্ট", href: "/admins/agent" },
+    { name: "সুপার এজেন্ট লিষ্ট", href: "/admins/superAgent" },
+   
+    { name: "সাব এডমিন লিষ্ট", href: "/admins/subAdmin" },
+    { name: "এডমিন লিষ্ট", href: "/admins/admin" },
+    { name: "সাইট এডমিন লিষ্ট", href: "/admins/siteAdmin" },
+    { name: "কাস্টোমার সার্ভিস লিষ্ট", href: "/admins/customerService" },
   ];
 
   return (
     <div className="">
-      <div className="h-[50px] w-full flex items-center justify-between px-5 shadow-md">
+      <div className="h-[50px] w-full flex items-center justify-between px-5 shadow-md border-b-2 border-red-500">
         <div className="flex gap-x-2 ">
           <button
             onClick={toggleDrawer}
@@ -129,8 +142,8 @@ const AdminMobileNavbar = () => {
         </div>
 
         <Link
-          to="/Admins/CustomerService"
-          className="text-xs font-semibold text-red-400  hover:text-700"
+          to="/admins/customerService"
+          className="text-xs  text-red-600  hover:text-700"
         >
           কাস্টোমার সার্ভিস
         </Link>
@@ -169,8 +182,13 @@ const AdminMobileNavbar = () => {
                     </Link>
                   </div>
                 ))}
+<<<<<<< HEAD
                 <li className="list-none">
                   <Menu items={generalQsns} active={"/Faq"}>সাধারণ প্রশ্ন উত্তর</Menu>
+=======
+                <li >
+                  <Menu   items={generalQsns}>সাধারণ প্রশ্ন উত্তর</Menu>
+>>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
                 </li>
                 <li className="list-none">
                   <Menu items={agentListMenus} active={"/Admins"}>এজেন্ট লিস্ট</Menu>

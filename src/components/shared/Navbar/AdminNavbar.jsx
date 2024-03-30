@@ -19,7 +19,7 @@ const AdminNavbar = () => {
     { title: "এজেন্ট কে ভেরিফাই করুনট", url: "/admins/verifyAdmin" },
     { title: "এজেন্ট লিষ্ট", url: "/admins/agent" },
     { title: "সুপার এজেন্ট লিষ্ট", url: "/admins/superAgent" },
-    // { title: "সাব এজেন্ট লিষ্ট", url: "/Admins/" },
+
     { title: "সাব এডমিন লিষ্ট", url: "/admins/subAdmin" },
     { title: "এডমিন লিষ্ট", url: "/admins/admin" },
     { title: "সাইট এডমিন লিষ্ট", url: "/admins/siteAdmin" },
