@@ -99,7 +99,7 @@ const SiteAdminPage = () => {
                             window.open(`https://wa.me/${admin?.profile?.wa_link},'_blank`)
                           }} className="text-green-600 text-lg font-bold cursor-pointer"/>
                         </td>
-                        <td className="px-3 py-3 text-center">
+                        <td className="px-3 py-3 text-center text-red-500  font-bold">
                          {admin?.profile?.phone}
                         </td>
                         {/* <td className="px-3 py-3 font-bold text-center cursor-pointer hover:underline hover:text-blue-800">

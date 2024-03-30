@@ -39,29 +39,29 @@ const SearchByNumber = () => {
   // console.log(searchedResult[0],'aaaaaa');
   return (
     <AdminLayout>
-      <div className="bg-white lg:w-[76%] mx-auto min-h-screen my-2 p-5 lg:p-10">
-        <div className=" flex flex-col items-center justify-center gap-3 lg:gap-6 md:border border-gray-500">
+      <div className="bg-white  w-full lg:w-[76%] mx-auto min-h-screen my-2 p-5 lg:p-10">
+        <div className=" flex flex-col  justify-center gap-3 lg:gap-6 md:border border-gray-500 w-full ">
           <div>
-            <p className="text-2xl lg:font-bold">
+            <p className="text-2xl lg:font-bold text-center">
               ফোন নাম্বার দিয়ে সার্চ করুন:
             </p>
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="" className="text-base lg:text-lg font-bold">
-              এজেন্ট নাম্বার:
+            ফোন নাম্বার:
             </label>
             <input
               value={number}
-              placeholder="number"
+              
               onChange={(e) => setNumber(e.target.value)}
-              className="outline-none border-2 border-black px-2 py-1 w-full"
+              className="outline-none border-2 border-gray-400 px-2 py-1 w-full rounded"
               type="number"
             />
           </div>
           <div>
             <button
               onClick={handleAdminSearch}
-              className="bg-blue-500 px-6 py-1 mb-2 rounded text-white font-bold"
+              className="bg-green-500 px-6 py-1 mb-2 rounded text-white font-bold"
             >
               Submit
             </button>

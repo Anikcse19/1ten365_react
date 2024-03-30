@@ -29,7 +29,9 @@ const OldNewNumber = () => {
         {/*Site admin config  start*/}
         <div className="w-full  mt-12">
           {/* poster start */}
-
+          <p className="mb-5 text-4xl md:text-4xl px-5 ">
+          এজেন্টের এর নতুন পুরাতন নাম্বার?
+            </p>
           <div className="w-[100%] md:w-[80%] mx-auto p-5 my-10">
             <img
               width={400}
@@ -115,7 +117,7 @@ const OldNewNumber = () => {
           {/* admin table end */}
         </div>
       </div>
-      <div className="lg:w-[76%] mx-auto mb-2">
+      <div className="w-[90%] md:w-[76%] mx-auto my-2">
         <FooterSection />
       </div>
     </AdminLayout>

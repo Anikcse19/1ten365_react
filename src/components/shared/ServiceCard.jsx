@@ -36,7 +36,7 @@ const navigate=useNavigate()
 
       <div className="w-full">
         <button onClick={()=>navigate(`${item?.link}`)} className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400">
-          Read More...কাস্টমার সার্ভিস লিষ্ট
+      { `   Read More.. ${item.title}`}
         </button>
       </div>
     </div>

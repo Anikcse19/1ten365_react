@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AdminHomePage from "../pages/AdminHomePage";
 import AdminPage from "../pages/Admins/Admin";
 import Agent from "../pages/Admins/Agent";
+import AllAgents from "../pages/Admins/AllAgents";
 import CustomerServicePage from "../pages/Admins/CustomerService";
 import SiteAdminPage from "../pages/Admins/SiteAdmin";
 import SubAdminPage from "../pages/Admins/SubAdmin";
@@ -12,18 +13,20 @@ import AddAdmin from "../pages/Dasboard/AddAdmin";
 import CustomService from "../pages/Dasboard/CreateCustomerService";
 import ViewAdmins from "../pages/Dasboard/ViewAdmins";
 import EditAdmin from "../pages/Dasboard/editAdmin";
+import AllFaq from "../pages/Faq/AllFaq";
 import ComplainAgentPage from "../pages/Faq/ComplainAgent";
 import ConditionPage from "../pages/Faq/Condition";
 import FbGroupLinkPage from "../pages/Faq/FbGroup";
+import HowManyAgent from "../pages/Faq/HowManyAgent";
 import HowToAgentPage from "../pages/Faq/HowToAgent";
 import HowToTransactionPage from "../pages/Faq/HowToTransaction";
 import OldNewNumber from "../pages/Faq/OldNewNumber";
 import OpenAccount from "../pages/Faq/OpenAccount";
 import ProxyLink from "../pages/Faq/ProxyLink";
 import SearchByNumber from "../pages/Faq/SearchByNumber";
+import WorkOfAgent from "../pages/Faq/WorkOfAgent";
 import Home from "../pages/Homepage";
 import PrivateRoute from "./privateRoute";
-
 
 const routes = createBrowserRouter([
   {
@@ -31,136 +34,147 @@ const routes = createBrowserRouter([
     // element: <App />,
     children: [
       {
-        index: true,   
-        element:<Home/>      
+        index: true,
+        element: <Home />,
       },
-      
     ],
   },
   {
-    path:'/admins',
-    children:[
+    path: "/admins",
+    children: [
       {
-        path:'/admins/customerService',
-        element:<CustomerServicePage/>
+        path: "/admins/customerService",
+        element: <CustomerServicePage />,
       },
       {
-        path:'/admins/admin',
-        element:<AdminPage/>
+        path: "/admins/admin",
+        element: <AdminPage />,
       },
       {
-        path:'/admins/subAdmin',
-        element:<SubAdminPage/>
+        path: "/admins/subAdmin",
+        element: <SubAdminPage />,
       },
       {
-        path:'/admins/superAgent',
-        element:<SuperAgent/>
+        path: "/admins/superAgent",
+        element: <SuperAgent />,
       },
       {
-        path:'/admins/agent',
-        element:<Agent/>
+        path: "/admins/agent",
+        element: <Agent />,
       },
       {
-        path:'/admins/siteAdmin',
-        element:<SiteAdminPage/>
+        path: "/admins/siteAdmin",
+        element: <SiteAdminPage />,
       },
       {
-        path:'/admins/verifyAdmin',
-        element: <VerifyAdmin/>
+        path: "/admins/verifyAdmin",
+        element: <VerifyAdmin />,
       },
-     
-    ]
+      {
+        path: "/admins/allAgents",
+        element: <AllAgents />,
+      },
+    ],
   },
 
   {
-    path:'/faq',
-    children:[
+    path: "/faq",
+    children: [
       {
-        path:'/faq/oldNewNumber',
-        element:<OldNewNumber/>
+        path: "/faq/howManyAgent",
+        element: <HowManyAgent />,
       },
       {
-        path:'/faq/complainAgent',
-        element:<ComplainAgentPage/>
+        path: "/faq/workOfAgent",
+        element: <WorkOfAgent />,
       },
       {
-        path:'/faq/condition',
-        element:<ConditionPage/>
+        path: "/faq/oldNewNumber",
+        element: <OldNewNumber />,
       },
       {
-        path:'faq/fbGroup',
-        element:<FbGroupLinkPage/>
+        path: "/faq/complainAgent",
+        element: <ComplainAgentPage />,
       },
       {
-        path:'/faq/howToAgent',
-        element:<HowToAgentPage/>
+        path: "/faq/condition",
+        element: <ConditionPage />,
       },
       {
-        path:'/faq/howToTransaction',
-        element:<HowToTransactionPage/>
+        path: "/faq/fbGroup",
+        element: <FbGroupLinkPage />,
       },
       {
-        path:'/faq/openAccount',
-        element:<OpenAccount/>
+        path: "/faq/howToAgent",
+        element: <HowToAgentPage />,
       },
       {
-        path:'/faq/proxyLink',
-        element:<ProxyLink/>
+        path: "/faq/howToTransaction",
+        element: <HowToTransactionPage />,
       },
       {
-        path:'/faq/searchByNumber',
-        element:<SearchByNumber/>
+        path: "/faq/openAccount",
+        element: <OpenAccount />,
       },
-    ]
+      {
+        path: "/faq/proxyLink",
+        element: <ProxyLink />,
+      },
+      {
+        path: "/faq/searchByNumber",
+        element: <SearchByNumber />,
+      },
+      {
+        path: "/faq/allFaqs",
+        element: <AllFaq />,
+      },
+    ],
   },
   {
-    path:'/dashboard',
-    children:[
+    path: "/dashboard",
+    children: [
       {
-        path:'/dashboard/addAdmin',
-        element:(
+        path: "/dashboard/addAdmin",
+        element: (
           <PrivateRoute>
-            <AddAdmin/>
-            </PrivateRoute>
-        )
+            <AddAdmin />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/dashboard/viewAdmins',
-        element:(
+        path: "/dashboard/viewAdmins",
+        element: (
           <PrivateRoute>
-            <ViewAdmins/>
+            <ViewAdmins />
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path:'/dashboard/createCustomerService',
-        element:(
+        path: "/dashboard/createCustomerService",
+        element: (
           <PrivateRoute>
-            <CustomService/>
+            <CustomService />
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path:'/dashboard/editAdmin/:id',
-        element:(
+        path: "/dashboard/editAdmin/:id",
+        element: (
           <PrivateRoute>
-            <EditAdmin/>
+            <EditAdmin />
           </PrivateRoute>
-        )
-      }
-    ]
+        ),
+      },
+    ],
   },
   {
-    path:'/adminHomePage',
-    element: <AdminHomePage/>
+    path: "/adminHomePage",
+    element: <AdminHomePage />,
   },
   {
-    path:'/auth/login',
-    element:<Login/>
-  }
-  
- 
-  
+    path: "/auth/login",
+    element: <Login />,
+  },
 ]);
 
 export default routes;

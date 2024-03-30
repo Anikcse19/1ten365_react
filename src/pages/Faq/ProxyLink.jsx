@@ -30,7 +30,10 @@ const ProxyLink = () => {
     <AdminLayout>
       <div className="bg-white bg-green-20 mx-auto lg:w-[76%] min-h-screen">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-5 lg:px-0 my-2 mx-auto">
-          <div className="col-span-2 border border-gray-400 p-5">
+          <div className="col-span-2 md:border border-gray-400 md:p-5">
+          <p className="text-4xl md:text-4xl   mb-8">
+              1ten প্রক্সি লিঙ্ক
+            </p>
             <div>
               <img
                 width={1920}
@@ -41,9 +44,7 @@ const ProxyLink = () => {
                 alt="poster"
               />
             </div>
-            <p className="text-base md:text-4xl font-bold text-red-600 mt-5">
-              1ten প্রক্সি লিঙ্ক
-            </p>
+            
 
             {/* proxy links */}
             <div className="border-l-4 border-gray-600 mt-12">
@@ -75,7 +76,7 @@ const ProxyLink = () => {
           <div className="col-span-1 bg-gray-100"></div>
         </div>
 
-        <div className="w-[100%] mx-auto ">
+        <div className="w-[90%] mx-auto md:w-[76%] my-2">
           <FooterSection />
         </div>
       </div>

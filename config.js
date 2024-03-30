@@ -12,7 +12,9 @@ export const images={
     "openAccPoster":"https://i.ibb.co/GJRZ4rb/how-to-create-account.png",
     "proxyLinkPoster":"https://i.ibb.co/XzLNqcN/proxy-link.png",
     "cardimg":"https://i.ibb.co/6mptyNh/home-img2.jpg",
-    "openAcc2":"https://i.ibb.co/M7SSmq0/home-img3.jpg"
+    "openAcc2":"https://i.ibb.co/M7SSmq0/home-img3.jpg",
+    'howManyAgent':"https://i.ibb.co/02Rg9tP/agent-type.png",
+    'workOfAgent':'https://i.ibb.co/vqBbxLp/why-agent-list.png'
 }
 
 

@@ -86,42 +86,42 @@ const Agent = () => {
         {/*Site admin config  start*/}
         <div className="w-full mt-6 lg:mt-12">
           {/* agent/admin search start */}
-          <div className=" lg:w-[76%] mx-auto bg-white flex flex-col items-center justify-center gap-3 lg:gap-6 py-5 ">
+          <div className=" lg:w-[76%] mx-auto bg-white flex flex-col justify-center gap-3 lg:gap-6 p-5 ">
             <div>
-              <p className="text-base lg:text-xl lg:font-bold">
-                এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
-              </p>
+            <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
+              এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
+            </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6">
-              <label htmlFor="" className="text-base lg:text-lg">
-                এজেন্ট টাইপ
-              </label>
-              <select
-                value={adminType}
-                onChange={(e) => setAdminType(e.target.value)}
-                className="outline-none border-2 border-black px-2 py-1 w-[220px]"
-              >
-                {types?.slice(1, 5)?.map((type,i) => (
-                  <option key={i} value={type}>{type}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5">
-              <label htmlFor="" className="text-base lg:text-lg">
-                এজেন্ট আইডি
-              </label>
-              <input
-                value={adminId}
-                onChange={(e) => setAdminId(e.target.value)}
-                className="outline-none border-2 border-black px-2 py-1 w-[220px]"
-                type="text"
-              />
-            </div>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6 ">
+            <label htmlFor="" className="text-base lg:text-lg mb-1">
+              Agent Type:
+            </label>
+            <select
+              value={adminType}
+              onChange={(e) => setAdminType(e.target.value)}
+              className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[220px]"
+            >
+              {types?.slice(1, 5)?.map((type,i) => (
+                <option key={i} value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5">
+            <label htmlFor="" className="text-base lg:text-lg mb-1">
+              Agent ID:
+            </label>
+            <input
+              value={adminId}
+              onChange={(e) => setAdminId(e.target.value)}
+              className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[220px]"
+              type="number"
+            />
+          </div>
             <div>
               <button
                 onClick={handleAdminSearch}
-                className="bg-blue-500 px-6 py-1 rounded text-white font-bold"
+                className="bg-green-500 px-6 py-2 rounded text-white font-bold"
               >
                 Submit
               </button>
@@ -159,7 +159,7 @@ const Agent = () => {
             </div>
           )}
           {searchedResult?.id && (
-            <div className="md:w-[80%] w-[100%] mx-2 md:mx-auto bg-white  p-5 my-10">
+            <div className="md:w-[80%] w-[90%] mx-auto bg-white  p-5 my-10">
               
               {/* show search admin details start*/}
               <p className="text-center text-base lg:text-lg font-bold mb-3">
@@ -252,7 +252,7 @@ const Agent = () => {
           {/* show search result end */}
 
           {/* user alert start*/}
-          <div className="md:w-[80%] w-[100%] mx-3 md:mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
+          <div className="md:w-[80%] w-[90%] mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
             <p className="text-base lg:text-xl font-bold">
               এজেন্ট দের সাথে লেনদেন এর আগে 1ten365 এর নিয়ম গুলো জেনে নিন!!
             </p>
@@ -360,7 +360,7 @@ const Agent = () => {
                               className="text-green-600 text-lg font-bold cursor-pointer"
                             />
                           </td>
-                          <td className="px-3 py-3 text-center">
+                          <td className="px-3 py-3 text-center text-red-500 hover:underline font-bold">
                             {adminC?.profile?.phone}
                           </td>
                           <td
@@ -380,7 +380,7 @@ const Agent = () => {
                                 obj:adminC,status:true
                               });
                             }}
-                            className="px-3 py-3 font-bold text-center cursor-pointer hover:underline hover:text-blue-800"
+                            className="px-3 py-3 font-bold text-center cursor-pointer hover:underline text-red-500 hover:text-red-500"
                           >
                             অভিযোগ
                           </td>

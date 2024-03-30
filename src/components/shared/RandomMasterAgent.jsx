@@ -30,7 +30,7 @@ const RandomMasterAgent = () => {
 
   return (
     <div className="border mt-1">
-      <div className="flex justify-between items-center py-4 px-5">
+      <div className="flex justify-between items-center gap-3 py-4 px-5">
         <h1 className="text-lg font-semibold uppercase">RANDOM AGENT</h1>
         <div className="flex items-center">
           <button className="border px-4 p-1 flex items-center text-sm gap-x-1 uppercase bg-red-700 text-white">

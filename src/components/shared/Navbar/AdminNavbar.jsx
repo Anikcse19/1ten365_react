@@ -44,7 +44,7 @@ const AdminNavbar = () => {
 
             <div className={`dropdown h-full inline-block relative w-[200px] border-r ${router.pathname.includes('/faq') && "bg-slate-900 text-white"}`}>
               <button className={`w-full border-r  font-semibold py-2 px-4 flex justify-center items-end `}>
-                <span className="mr-1">সাধারণ প্রশ্ন উত্তর</span>
+                <span onClick={()=>navigate('/faq/allFaqs')} className="mr-1">সাধারণ প্রশ্ন উত্তর</span>
                 <TiArrowSortedDown className="rotate-[-45deg] text-xl -mb-1" />
               </button>
               <div className="dropdown-menu w-[200px] absolute hidden text-gray-700 pt-1 p-2 shadow-lg text-sm bg-gray-200 z-[1000] mt-1">
@@ -62,7 +62,7 @@ const AdminNavbar = () => {
 
             <div  className={`dropdown h-full inline-block relative w-[200px] border-r ${router.pathname.includes('/admins/') && "bg-slate-900 text-white"}`}>
               <button className="w-full border-r  font-semibold py-2 px-4 flex justify-center items-end">
-                <span className="mr-1">এজেন্ট লিস্ট</span>
+                <span onClick={()=>navigate('/admins/allAgents')} className="mr-1">এজেন্ট লিস্ট</span>
                 <TiArrowSortedDown className="rotate-[-45deg] text-xl -mb-1" />
               </button>
               <div className="dropdown-menu w-[200px] absolute hidden text-gray-700 pt-1 p-2 shadow-lg text-sm bg-gray-200 z-[1000]">

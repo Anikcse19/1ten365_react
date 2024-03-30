@@ -8,7 +8,10 @@ const OpenAccount = () => {
     <AdminLayout>
       <div className="bg-white lg:w-[76%] mx-auto min-h-screen">
         <div className="p-5 my-2 lg:px-0">
-          <div className=" border border-gray-400 p-5">
+          <div className=" md:border border-gray-400 md:p-5">
+          <p className="mb-5 text-4xl md:text-4xl  ">
+              কিভাবে একাউন্ট খুলবেন?
+            </p>
             <div className="mx-auto">
               <img
                 width={1920}
@@ -19,9 +22,7 @@ const OpenAccount = () => {
                 alt="poster"
               />
             </div>
-            <p className="mt-5 text-base md:text-4xl font-bold text-red-600">
-              কিভাবে একাউন্ট খুলবেন?
-            </p>
+           
 
             {/* proxy links */}
             <div className="border-l-4 border-gray-600 mt-12 px-3">
@@ -98,7 +99,7 @@ const OpenAccount = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-[76%] mx-auto ">
+      <div className="w-[90%] md:w-[76%] mx-auto my-2">
         <FooterSection />
       </div>
     </AdminLayout>

@@ -56,7 +56,7 @@ const Complain = (props) => {
 
   return (
     <div>
-      <div className="md:w-[80%] w-[100%] mx-2 md:mx-auto bg-white md:p-5 my-10">
+      <div className="md:w-[80%] w-[90%]  mx-auto bg-white md:p-5 my-10">
         {/* show search admin details start*/}
         <p className="text-center text-base lg:text-lg font-bold mb-3">
           উনি 1ten365 এর একজন অনলাইন{" "}

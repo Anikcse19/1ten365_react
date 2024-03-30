@@ -52,21 +52,21 @@ const VerifyAdmin = () => {
     <AdminLayout>
       <div>
         {/* agent/admin search start */}
-        <div className="w-[80%] mx-auto bg-white flex flex-col items-center justify-center gap-3 lg:gap-6 py-5">
+        <div className="w-full md:w-[80%] mx-auto bg-white flex flex-col  justify-center gap-3 lg:gap-6 p-5 min-h-full">
           <div>
-            <p className="text-base lg:text-xl font-semibold lg:font-bold">
+            <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
               এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6">
-            <label htmlFor="" className="text-base lg:text-lg">
-              এজেন্ট টাইপ
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6 ">
+            <label htmlFor="" className="text-base lg:text-lg mb-1">
+              Agent Type:
             </label>
             <select
               value={adminType}
               onChange={(e) => setAdminType(e.target.value)}
-              className="outline-none border-2 border-black px-2 py-1 w-[220px]"
+              className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[220px]"
             >
               {types?.slice(1, 5)?.map((type,i) => (
                 <option key={i} value={type}>{type}</option>
@@ -74,20 +74,20 @@ const VerifyAdmin = () => {
             </select>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5">
-            <label htmlFor="" className="text-base lg:text-lg">
-              এজেন্ট আইডি
+            <label htmlFor="" className="text-base lg:text-lg mb-1">
+              Agent ID:
             </label>
             <input
               value={adminId}
               onChange={(e) => setAdminId(e.target.value)}
-              className="outline-none border-2 border-black px-2 py-1 w-[220px]"
+              className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[220px]"
               type="number"
             />
           </div>
           <div>
             <button
               onClick={handleAdminSearch}
-              className="bg-blue-500 px-6 py-1 rounded text-white font-bold"
+              className="bg-green-500 px-6 py-2 rounded text-white font-bold"
             >
               Submit
             </button>
@@ -206,7 +206,7 @@ const VerifyAdmin = () => {
         )}
         {/* show search result end */}
       </div>
-      <div className="lg:w-[76%] mx-auto mt-12 mb-2">
+      <div className="w-[90%] md:w-[76%] mx-auto my-2">
         <FooterSection />
       </div>
     </AdminLayout>

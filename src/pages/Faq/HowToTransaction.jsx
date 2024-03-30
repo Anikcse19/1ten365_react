@@ -8,8 +8,8 @@ const HowToTransactionPage = () => {
     <AdminLayout>
       <div className="bg-white w-full min-h-screen">
         <div className="p-3 md:p-12">
-          <div className=" border border-gray-400 p-3 md:p-10">
-          <p className="text-2xl md:text-4xl font-bold text-red-600">
+          <div className=" md:border border-gray-400 md:p-10">
+          <p className="text-2xl md:text-4xl font-bold ">
               1Ten তে কিভাবে লেনদেন করবেন?
             </p>
             <div className="w-[100%] mx-auto  my-3">

@@ -8,7 +8,10 @@ const ComplainAgentPage = () => {
     <AdminLayout>
       <div className="bg-white w-full min-h-screen">
         <div className="p-3 md:p-12">
-          <div className=" border border-gray-400 p-3 md:p-10">
+          <div className=" md:border border-gray-400 md:p-3 md:p-10">
+          <p className="text-2xl md:text-4xl font-bold ">
+              এজেন্ট এর বিরুদ্ধে কিভাবে অভিযোগ করবেন?
+            </p>
             <div className="w-[100%] mx-auto p-5 my-3">
               <img
                 width={400}
@@ -18,9 +21,7 @@ const ComplainAgentPage = () => {
                 alt="poster"
               />
             </div>
-            <p className="text-base md:text-4xl font-bold text-red-600">
-              এজেন্ট এর বিরুদ্ধে কিভাবে অভিযোগ করবেন?
-            </p>
+           
 
             {/* proxy links */}
             <div className="border-l-4 border-gray-600 mt-12 px-3">

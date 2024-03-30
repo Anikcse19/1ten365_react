@@ -5,7 +5,7 @@ const AdminsNavInfo = () => {
   const menus = [
     {
       title: "1Ten",
-      url: "",
+      url: "/adminHomePage",
       status: true,
     },
     {
@@ -28,7 +28,7 @@ const AdminsNavInfo = () => {
             key={i}
             className={`w-[150px] h-full text-slate-900 font-semibold text-sm hover:text-white hover:bg-slate-900 flex justify-center items-center border-r border-slate-300 ${item.status ? "" : "cursor-not-allowed"}`}
           >
-            <Link to="" className={`${item.status ? "" : "cursor-not-allowed"}`}>{item?.title}</Link>
+            <Link to={item?.url} className={`${item.status ? "" : "cursor-not-allowed"}`}>{item?.title}</Link>
           </div>
         ))}
       </div>

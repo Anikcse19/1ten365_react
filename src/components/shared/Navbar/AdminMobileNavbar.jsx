@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { images } from "../../../../config";
 
 const Menu = (props) => {
-  const { children, items, active } = props;
+  const { children, items, active,from } = props;
   const [isOpened, setIsOpened] = useState(true);
   const location = useLocation();
   const { pathname } = location;
@@ -20,10 +20,17 @@ const Menu = (props) => {
         className={`w-full flex items-center justify-between text-white p-2 rounded-lg hover:bg-red-500 hover:text-white duration-150 
         ${pathname.startsWith(active) && "bg-red-500" }
         `}
-        onClick={() => setIsOpened(!isOpened)}
+        
       >
-        <div className={`flex items-center gap-x-2`}>{children}</div>
+        <div onClick={()=>{
+          if(from=='faq'){
+            navigate('/faq/allFaqs')
+          }else{
+            navigate('/admins/allAgents')
+          }
+        }} className={`flex items-center gap-x-2`}>{children}</div>
         <IoIosArrowDown
+        onClick={() => setIsOpened(!isOpened)}
           className={`text-xl text-red-700 duration-150 ${
             isOpened ? "rotate-180 text-white" : ""
           }`}
@@ -35,8 +42,8 @@ const Menu = (props) => {
             <div key={idx} className="border-b border-slate-800">
               <div
                 onClick={() => navigate(`${item?.href}`)}
-                className={`flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 duration-150
-                 ${pathname === item.href && "text-red-500"}`}
+                className={`flex items-center gap-x-2  p-2 rounded-lg  hover:bg-red-500 duration-150
+                 ${pathname === item?.href ? "text-red-500":"text-white"}`}
               >
                 {item.icon ? (
                   <div className="text-gray-500">{item.icon}</div>
@@ -75,7 +82,7 @@ const AdminMobileNavbar = () => {
 
   const navsFooter = [
     {
-      href: "",
+      href: "/adminHomePage",
       name: "1TEN",
       icon: "",
     },
@@ -143,7 +150,7 @@ const AdminMobileNavbar = () => {
         className=""
       >
         <nav className="fixed top-0 left-0 w-full h-full  border-r bg-black space-y-8 sm:w-80">
-          <div className="flex flex-col h-[80vh] overflow-y-auto p-4">
+          <div className="flex flex-col h-[100vh] overflow-y-auto p-4">
             <div className="flex justify-between items-center text-white border-b border-slate-800">
               <p className="font-semibold text-lg">Sidebar</p>
 
@@ -170,10 +177,10 @@ const AdminMobileNavbar = () => {
                   </div>
                 ))}
                 <li className="list-none">
-                  <Menu items={generalQsns} active={"/Faq"}>সাধারণ প্রশ্ন উত্তর</Menu>
+                  <Menu from ='faq' items={generalQsns} active={"/faq"}>সাধারণ প্রশ্ন উত্তর</Menu>
                 </li>
                 <li className="list-none">
-                  <Menu items={agentListMenus} active={"/Admins"}>এজেন্ট লিস্ট</Menu>
+                  <Menu from='admins' items={agentListMenus} active={"/admins"}>এজেন্ট লিস্ট</Menu>
                 </li>
               </div>
 
