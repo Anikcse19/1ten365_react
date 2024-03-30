@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 import { useEffect, useState } from "react";
@@ -10,29 +9,25 @@ import AdminLayout from "../../components/shared/Layout/AdminLayout";
 import base_url from "../../utils/url";
 // import adminPoster from '../../../public/images/1ten365/'
 
-
-
 const AdminPage = () => {
   const [adminType, setAdminType] = useState("");
   const [adminId, setAdminId] = useState("");
   const [searchedResult, setSearchedResult] = useState({});
   const [types, setTypes] = useState([]);
   const [siteAdmins, setSiteAdmins] = useState([]);
-  const [userNotFound,setUserNotFound]=useState(false)
-  const [currentSelected,setCurrentSelected]=useState({
-    obj:{},status:false
-  })
-  
-  const navigate=useNavigate()
+  const [userNotFound, setUserNotFound] = useState(false);
+  const [currentSelected, setCurrentSelected] = useState({
+    obj: {},
+    status: false,
+  });
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${base_url}/admins/types`, {
       method: "GET",
       headers: {
         Accept: "application/json",
-       
       },
     })
       .then((res) => res.json())
@@ -45,7 +40,6 @@ const AdminPage = () => {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        
       },
     })
       .then((res) => res.json())
@@ -53,24 +47,23 @@ const AdminPage = () => {
   }, []);
 
   const handleAdminSearch = () => {
-    setUserNotFound(false)
-    setSearchedResult({})
+    setUserNotFound(false);
+    setSearchedResult({});
     setCurrentSelected({
-      obj:{},status:false
-    })
-      axios
-        .get(`${base_url}/admins/${adminId}?type=${adminType}`, {
-          headers: {
-            Accept: "application/json",
-            
-          },
-        })
-        .then((res) => {
-          if(res?.data?.msg=='success'){
-
-            setSearchedResult(res?.data?.admin);
-        }else{
-          setUserNotFound(true)
+      obj: {},
+      status: false,
+    });
+    axios
+      .get(`${base_url}/admins/${adminId}?type=${adminType}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        if (res?.data?.msg == "success") {
+          setSearchedResult(res?.data?.admin);
+        } else {
+          setUserNotFound(true);
         }
       });
   };
@@ -80,38 +73,41 @@ const AdminPage = () => {
         {/*Site admin config  start*/}
         <div className="w-full mt-6 lg:mt-12">
           {/* agent/admin search start */}
-          <div className=" lg:w-[76%] mx-auto bg-white flex flex-col justify-center gap-3 lg:gap-6 p-5 ">
+          <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
             <div>
-            <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
-              এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
-            </p>
+              <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
+                এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
+              </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6 ">
-            <label htmlFor="" className="text-base lg:text-lg mb-1">
-              Agent Type:
-            </label>
-            <select
-              value={adminType}
-              onChange={(e) => setAdminType(e.target.value)}
-              className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[220px]"
-            >
-              {types?.slice(1, 5)?.map((type,i) => (
-                <option key={i} value={type}>{type}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5">
-            <label htmlFor="" className="text-base lg:text-lg mb-1">
-              Agent ID:
-            </label>
-            <input
-              value={adminId}
-              onChange={(e) => setAdminId(e.target.value)}
-              className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[220px]"
-              type="number"
-            />
-          </div>
+            <div className="bg-gray-200 px-12 py-3 rounded-md shadow-lg flex flex-col justify-center md:items-center gap-3">
+            <div className="flex flex-col ">
+              <label htmlFor="" className="text-base lg:text-lg mb-1">
+                Agent Type:
+              </label>
+              <select
+                value={adminType}
+                onChange={(e) => setAdminType(e.target.value)}
+                className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
+              >
+                {types?.slice(1, 5)?.map((type, i) => (
+                  <option key={i} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col ">
+              <label htmlFor="" className="text-base lg:text-lg mb-1">
+                Agent ID:
+              </label>
+              <input
+                value={adminId}
+                onChange={(e) => setAdminId(e.target.value)}
+                className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[320px]"
+                type="number"
+              />
+            </div>
             <div>
               <button
                 onClick={handleAdminSearch}
@@ -120,17 +116,20 @@ const AdminPage = () => {
                 Submit
               </button>
             </div>
+            </div>
           </div>
           {/* agent/admin search end */}
 
           {/* show Complain box start */}
-          {
-            currentSelected.status && (
-              <div id="complain">
-                <Complain from='admin' currentSelected={currentSelected} setCurrentSelected={setCurrentSelected}/>
-              </div>
-            )
-          }
+          {currentSelected.status && (
+            <div id="complain">
+              <Complain
+                from="admin"
+                currentSelected={currentSelected}
+                setCurrentSelected={setCurrentSelected}
+              />
+            </div>
+          )}
           {/* show Complain box end */}
 
           {/* show search result start */}
@@ -155,7 +154,6 @@ const AdminPage = () => {
           )}
           {searchedResult?.id && (
             <div className="md:w-[80%] w-[90%] mx-auto bg-white  p-5 my-10">
-              
               {/* show search admin details start*/}
               <p className="text-center text-base lg:text-lg font-bold mb-3">
                 উনি 1ten365 এর একজন অনলাইন {searchedResult?.profile?.type}{" "}
@@ -210,7 +208,9 @@ const AdminPage = () => {
                     {/* 1st row start */}
                     <div className="w-full flex border border-black p-3 bg-blue-300">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                        <p className="text-black px-1">উনার এডমিন এর এডমিন আইডিঃ </p>
+                        <p className="text-black px-1">
+                          উনার এডমিন এর এডমিন আইডিঃ{" "}
+                        </p>
                       </div>
                       <div className=" w-[50%] h-full flex justify-center items-center text-white">
                         <p className="text-black">2</p>
@@ -234,7 +234,9 @@ const AdminPage = () => {
                           }}
                           className="text-base md:text-2xl text-green-500 font-bold cursor-pointer"
                         />
-                        <p className="text-black">{searchedResult?.profile?.wa_link}</p>
+                        <p className="text-black">
+                          {searchedResult?.profile?.wa_link}
+                        </p>
                       </div>
                     </div>
                     {/* 2nd row end */}
@@ -281,22 +283,40 @@ const AdminPage = () => {
               <table className="w-full">
                 <thead className="sticky top-0 text-base bg-gray-400 w-full">
                   <tr className="border-b border-orange-700 ">
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       ID NO
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       Name
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       AGENT
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       APP
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       PHONE NUMBER
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       COMPALIN
                     </th>
                   </tr>
@@ -329,24 +349,27 @@ const AdminPage = () => {
                         <td className="px-3 py-3 text-center font-bold text-red-500 hover:underline">
                           {admin?.profile?.phone}
                         </td>
-                        <td 
-                         onClick={() => {
-                          setSearchedResult({})
-                          setUserNotFound(false)
-                          setCurrentSelected({
-                            obj:{},status:false
-                          })
-                          
-                          window.scrollTo({
-                            top: 500,
-                            behavior: 'smooth' // This smooth scrolls the page to the top
-                          });
-                          
-                          setCurrentSelected({
-                            obj:admin,status:true
-                          });
-                        }}
-                        className="px-3 py-3 font-bold text-center cursor-pointer hover:underline text-red-500 ">
+                        <td
+                          onClick={() => {
+                            setSearchedResult({});
+                            setUserNotFound(false);
+                            setCurrentSelected({
+                              obj: {},
+                              status: false,
+                            });
+
+                            window.scrollTo({
+                              top: 500,
+                              behavior: "smooth", // This smooth scrolls the page to the top
+                            });
+
+                            setCurrentSelected({
+                              obj: admin,
+                              status: true,
+                            });
+                          }}
+                          className="px-3 py-3 font-bold text-center cursor-pointer hover:underline text-red-500 "
+                        >
                           অভিযোগ
                         </td>
                       </tr>

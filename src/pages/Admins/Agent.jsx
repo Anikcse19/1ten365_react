@@ -86,38 +86,41 @@ const Agent = () => {
         {/*Site admin config  start*/}
         <div className="w-full mt-6 lg:mt-12">
           {/* agent/admin search start */}
-          <div className=" lg:w-[76%] mx-auto bg-white flex flex-col justify-center gap-3 lg:gap-6 p-5 ">
+          <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
             <div>
-            <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
-              এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
-            </p>
+              <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
+                এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
+              </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-6 ">
-            <label htmlFor="" className="text-base lg:text-lg mb-1">
-              Agent Type:
-            </label>
-            <select
-              value={adminType}
-              onChange={(e) => setAdminType(e.target.value)}
-              className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[220px]"
-            >
-              {types?.slice(1, 5)?.map((type,i) => (
-                <option key={i} value={type}>{type}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5">
-            <label htmlFor="" className="text-base lg:text-lg mb-1">
-              Agent ID:
-            </label>
-            <input
-              value={adminId}
-              onChange={(e) => setAdminId(e.target.value)}
-              className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[220px]"
-              type="number"
-            />
-          </div>
+            <div className="bg-gray-200 px-12 py-3 rounded-md shadow-lg flex flex-col justify-center md:items-center gap-3">
+            <div className="flex flex-col ">
+              <label htmlFor="" className="text-base lg:text-lg mb-1">
+                Agent Type:
+              </label>
+              <select
+                value={adminType}
+                onChange={(e) => setAdminType(e.target.value)}
+                className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
+              >
+                {types?.slice(1, 5)?.map((type, i) => (
+                  <option key={i} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col ">
+              <label htmlFor="" className="text-base lg:text-lg mb-1">
+                Agent ID:
+              </label>
+              <input
+                value={adminId}
+                onChange={(e) => setAdminId(e.target.value)}
+                className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[320px]"
+                type="number"
+              />
+            </div>
             <div>
               <button
                 onClick={handleAdminSearch}
@@ -125,6 +128,7 @@ const Agent = () => {
               >
                 Submit
               </button>
+            </div>
             </div>
           </div>
           {/* agent/admin search end */}

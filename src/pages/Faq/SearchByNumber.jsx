@@ -40,7 +40,7 @@ const SearchByNumber = () => {
   return (
     <AdminLayout>
       <div className="bg-white  w-full lg:w-[76%] mx-auto min-h-screen my-2 p-5 lg:p-10">
-        <div className=" flex flex-col  justify-center gap-3 lg:gap-6 md:border border-gray-500 w-full ">
+        <div className=" flex flex-col  justify-center md:items-center gap-3 lg:gap-6 md:border border-gray-500 w-full shadow-lg">
           <div>
             <p className="text-2xl lg:font-bold text-center">
               ফোন নাম্বার দিয়ে সার্চ করুন:
