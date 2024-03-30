@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
 import AdminHomePage from "../pages/AdminHomePage";
 import AdminPage from "../pages/Admins/Admin";
 import Agent from "../pages/Admins/Agent";
@@ -29,7 +28,7 @@ import PrivateRoute from "./privateRoute";
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    // element: <App />,
     children: [
       {
         index: true,   
