@@ -143,7 +143,7 @@ const SuperAgent = () => {
                   দয়া করে কাষ্টমার সার্ভিসে যোগাযোগ করুন।
                 </p>
                 <p
-                  onClick={() => router("/Admins/CustomerService")}
+                  onClick={() => router("/admins/customerService")}
                   className="text-base md:text-xl font-bold my-3 text-red-600 hover:underline cursor-pointer"
                 >
                   কাষ্টমার সার্ভিস এর নাম্বার গুলো পেতে এই লিঙ্ক এ ক্লিক করুন

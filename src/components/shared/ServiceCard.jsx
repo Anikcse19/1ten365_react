@@ -14,12 +14,12 @@ const navigate=useNavigate()
           alt="Next Image"
           width={1920}
           height={1080}
-          onClick={()=>navigate(`/Admins${item?.link}`)}
+          onClick={()=>navigate(`${item?.link}`)}
           className="object-cover w-full h-full cursor-pointer"
         />
 
         <Link
-          to={`/Admins${item?.link}`}
+          to={`${item?.link}`}
           className="absolute -bottom-2.5 left-5 bg-white border border-slate-500 px-2 py-[2px] text-xs hover:bg-red-700 hover:text-white uppercase"
         >
           Agent
@@ -35,7 +35,7 @@ const navigate=useNavigate()
       </p>
 
       <div className="w-full">
-        <button onClick={()=>navigate(`/Admins${item?.link}`)} className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400">
+        <button onClick={()=>navigate(`${item?.link}`)} className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400">
           Read More...কাস্টমার সার্ভিস লিষ্ট
         </button>
       </div>

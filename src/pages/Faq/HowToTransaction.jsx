@@ -9,7 +9,10 @@ const HowToTransactionPage = () => {
       <div className="bg-white w-full min-h-screen">
         <div className="p-3 md:p-12">
           <div className=" border border-gray-400 p-3 md:p-10">
-            <div className="w-[100%] mx-auto p-5 my-3">
+          <p className="text-2xl md:text-4xl font-bold text-red-600">
+              1Ten তে কিভাবে লেনদেন করবেন?
+            </p>
+            <div className="w-[100%] mx-auto  my-3">
               <img
                 width={400}
                 height={200}
@@ -18,9 +21,7 @@ const HowToTransactionPage = () => {
                 alt="poster"
               />
             </div>
-            <p className="text-base md:text-4xl font-bold text-red-600">
-              1Ten তে কিভাবে লেনদেন করবেন?
-            </p>
+           
 
             {/* proxy links */}
             <div className="border-l-4 border-gray-600 mt-12 px-3">
