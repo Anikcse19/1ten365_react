@@ -40,9 +40,9 @@ const SearchByNumber = () => {
   return (
     <AdminLayout>
       <div className="bg-white lg:w-[76%] mx-auto min-h-screen my-2 p-5 lg:p-10">
-        <div className=" flex flex-col items-center justify-center gap-3 lg:gap-6 border border-gray-500">
+        <div className=" flex flex-col items-center justify-center gap-3 lg:gap-6 md:border border-gray-500">
           <div>
-            <p className="text-base lg:text-xl lg:font-bold">
+            <p className="text-2xl lg:font-bold">
               ফোন নাম্বার দিয়ে সার্চ করুন:
             </p>
           </div>
@@ -54,7 +54,7 @@ const SearchByNumber = () => {
               value={number}
               placeholder="number"
               onChange={(e) => setNumber(e.target.value)}
-              className="outline-none border-2 border-black px-2 py-1 w-[220px]"
+              className="outline-none border-2 border-black px-2 py-1 w-full"
               type="number"
             />
           </div>
