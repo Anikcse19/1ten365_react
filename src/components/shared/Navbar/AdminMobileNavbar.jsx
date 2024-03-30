@@ -1,30 +1,41 @@
-
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import Drawer from 'react-modern-drawer';
+import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { images } from "../../../../config";
 
-
-
-
 const Menu = (props) => {
+<<<<<<< HEAD
+  const { children, items, active } = props;
+  const [isOpened, setIsOpened] = useState(true);
+  const location = useLocation();
+  const { pathname } = location;
+
+  const navigate = useNavigate();
+=======
   const { children, items } = props;
   const [isOpened, setIsOpened] = useState(false);
   const router=useLocation()
   const navigate=useNavigate()
 
   console.log(router.pathname);
+>>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
   return (
-    <div className="border-b border-slate-800">
+    <div className="border-b border-slate-800 mt-2">
       <button
+<<<<<<< HEAD
+        className={`w-full flex items-center justify-between text-white p-2 rounded-lg hover:bg-red-500 hover:text-white duration-150 
+        ${pathname.startsWith(active) && "bg-red-500" }
+        `}
+=======
         className={`w-full flex items-center justify-between text-white p-2 rounded-lg    duration-150 `}
+>>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
         onClick={() => setIsOpened(!isOpened)}
       >
-        <div className="flex items-center gap-x-2">{children}</div>
+        <div className={`flex items-center gap-x-2`}>{children}</div>
         <IoIosArrowDown
           className={`text-xl text-red-700 duration-150 ${
             isOpened ? "rotate-180 text-white" : ""
@@ -36,9 +47,9 @@ const Menu = (props) => {
           {items.map((item, idx) => (
             <div key={idx} className="border-b border-slate-800">
               <div
-              onClick={()=>navigate(`${item?.href}`)}
-                
-                className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 duration-150"
+                onClick={() => navigate(`${item?.href}`)}
+                className={`flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 duration-150
+                 ${pathname === item.href && "text-red-500"}`}
               >
                 {item.icon ? (
                   <div className="text-gray-500">{item.icon}</div>
@@ -61,7 +72,7 @@ const AdminMobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useLocation();
   const { pathname } = router;
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -121,7 +132,13 @@ const AdminMobileNavbar = () => {
           >
             <GiHamburgerMenu />
           </button>
-          <img onClick={()=>navigate('/')} width={70} height={70} src={images.logo} alt="" />
+          <img
+            onClick={() => navigate("/")}
+            width={70}
+            height={70}
+            src={images.logo}
+            alt=""
+          />
         </div>
 
         <Link
@@ -138,8 +155,8 @@ const AdminMobileNavbar = () => {
         direction="left"
         className=""
       >
-        <nav className="fixed top-0 left-0 w-full h-full border-r bg-black space-y-8 sm:w-80">
-          <div className="flex flex-col h-full p-4">
+        <nav className="fixed top-0 left-0 w-full h-full  border-r bg-black space-y-8 sm:w-80">
+          <div className="flex flex-col h-[80vh] overflow-y-auto p-4">
             <div className="flex justify-between items-center text-white border-b border-slate-800">
               <p className="font-semibold text-lg">Sidebar</p>
 
@@ -157,17 +174,24 @@ const AdminMobileNavbar = () => {
                   <div key={idx} className="border-b border-slate-800">
                     <Link
                       to={item.href}
-                      className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 hover:text-white duration-150"
+                      className={`flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 hover:text-white duration-150 ${
+                        pathname === item.href && "bg-red-500"
+                      }`}
                     >
                       {item.name}
                     </Link>
                   </div>
                 ))}
+<<<<<<< HEAD
+                <li className="list-none">
+                  <Menu items={generalQsns} active={"/Faq"}>সাধারণ প্রশ্ন উত্তর</Menu>
+=======
                 <li >
                   <Menu   items={generalQsns}>সাধারণ প্রশ্ন উত্তর</Menu>
+>>>>>>> 714b12803d13f7d0f82e35aa718a9cbfe46c49ce
                 </li>
-                <li>
-                  <Menu items={agentListMenus}>এজেন্ট লিস্ট</Menu>
+                <li className="list-none">
+                  <Menu items={agentListMenus} active={"/Admins"}>এজেন্ট লিস্ট</Menu>
                 </li>
               </div>
 
@@ -177,7 +201,9 @@ const AdminMobileNavbar = () => {
                     <div key={idx} className="border-b border-slate-800 ">
                       <Link
                         to={item.href}
-                        className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 duration-150 cursor-not-allowed"
+                        className={`flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-red-500 duration-150 cursor-not-allowed ${
+                          pathname === item.href && "bg-red-500"
+                        }`}
                       >
                         {item.name}
                       </Link>
@@ -185,6 +211,7 @@ const AdminMobileNavbar = () => {
                   ))}
                 </div>
               </div>
+
             </div>
           </div>
         </nav>
@@ -194,4 +221,3 @@ const AdminMobileNavbar = () => {
 };
 
 export default AdminMobileNavbar;
-
