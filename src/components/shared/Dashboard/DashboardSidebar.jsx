@@ -59,7 +59,7 @@ const DashboardSidebar = () => {
             <div>
               <div onClick={()=>{
                 localStorage.removeItem('token')
-                navigate('/auth/login')
+                navigate('/login')
               }} className="bg-slate-900 mx-5 text-center text-white font-bold cursor-pointer px-3 py-3 rounded-lg">
               <span>Log Out</span>
               </div>

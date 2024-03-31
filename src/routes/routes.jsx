@@ -172,7 +172,7 @@ const routes = createBrowserRouter([
     element: <AdminHomePage />,
   },
   {
-    path: "/auth/login",
+    path: "/login",
     element: <Login />,
   },
 ]);
