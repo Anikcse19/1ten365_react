@@ -24,14 +24,14 @@ const Login = () => {
   }
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center bg-stone-700">
-        <div className="bg-stone-600 w-[500px] h-[500px]">
+    <div className="w-full min-h-screen flex justify-center items-center bg-slate-700 p-3">
+        <div className="bg-slate-600 p-5">
             <div className="text-center my-10">
               <span className="bg-stone-400 px-12 py-2 text-black font-bold">Login</span>
             </div>
 
             {/* form */}
-            <div className="px-24 flex flex-col gap-6">
+            <div className="md:px-24 flex flex-col gap-6">
               {/* email field */}
               <div className="flex flex-col">
                 <label className="text-white font-bold" htmlFor="">Email</label>
@@ -45,7 +45,7 @@ const Login = () => {
             </div>
             {/* button */}
             <div className="mt-10 text-center">
-              <button onClick={handleLogin} className="bg-purple-900 px-12 py-2 rounded-md text-white font-bold">Login</button>
+              <button onClick={handleLogin} className="bg-green-500 hover:bg-green-400 px-12 py-2 rounded-md text-white font-bold">Login</button>
             </div>
         </div>
       

@@ -20,9 +20,11 @@ const EditAdmin = () => {
   const [selectedType, setSelectedType] = useState("");
   const [superVisor,setSuperVisor]=useState('')
   const [name,setName]=useState('')
-  const [inputId,setInputId]=useState(null)
-  const [wpLink,setWpLink]=useState(null)
-  const [phone,setPhone]=useState(null)
+  const [inputId,setInputId]=useState('')
+  const [wpLink,setWpLink]=useState('')
+  const [phone,setPhone]=useState('')
+  const [supervisors,setSupervisorsList]=useState([])
+  const [adminId,setAdminId]=useState('')
 
   const token=localStorage.getItem('token')
   useEffect(() => {
@@ -36,28 +38,53 @@ const EditAdmin = () => {
       .then((res) => res.json())
       .then((data) => setTypes(data?.types))
       .catch((error) => console.error("Error fetching data:", error)); // Handle fetch errors
+
+
+      fetch(`${base_url}/admins/${id}`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setAdminDetails(data)
+          setSelectedType(data?.admin?.profile?.type)
+          setSuperVisor(data?.admin?.super?.name)
+          setAdminId(data?.admin?.super?.id)
+          setName(data?.admin?.name)
+          setInputId(data?.admin?.input_id)
+          setWpLink(data?.admin?.profile?.wa_link)
+          setPhone(data?.admin?.profile?.phone)
+        })
+        .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
+
   useEffect(() => {
-    fetch(`${base_url}/admins/${id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setAdminDetails(data)
-        setSelectedType(data?.admin?.profile?.type)
-        setSuperVisor(data?.admin?.super?.name)
-        setName(data?.admin?.name)
-        setInputId(data?.admin?.input_id)
-        setWpLink(data?.admin?.profile?.wa_link)
-        setPhone(data?.admin?.profile?.phone)
+      fetch(`${base_url}/admins?type=${
+        selectedType === "এডমিন" ? "সাইট এডমিন" :
+        selectedType === "সাব এডমিন"
+          ? "এডমিন"
+          : selectedType === "সুপার এজেন্ট"
+          ? "সাব এডমিন"
+          : selectedType === "এজেন্ট"
+          ? "সুপার এজেন্ট"
+          : ""
+      }`,{
+        headers:{
+          Accept:'application/json'
+        }
+      }).then(res=>res.json()).then(data=>{
+        setSupervisorsList(data?.admins);
+       
       })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+
+
+  }, [selectedType]);
+
+  
 
   const handleTypeChange = (event) => {
     setSelectedType(event.target.value);
@@ -71,7 +98,7 @@ const EditAdmin = () => {
       wa_link:wpLink,
       input_id:inputId,
       type: selectedType,
-      admin_id:superVisor
+      admin_id:adminId
     };
 
     if (infos.type == "সাইট এডমিন") {
@@ -115,7 +142,7 @@ const EditAdmin = () => {
           </p>
         </div>
 
-        <section className="mt-8 w-[80%] p-6 mx-auto bg-gray-300 rounded-md shadow-md ">
+        <section className="mt-8 w-[95%] md:w-[80%] p-6 mx-auto bg-gray-300 rounded-md shadow-md ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
               {/* Name */}
@@ -127,7 +154,7 @@ const EditAdmin = () => {
                   type="text"
                   value={name}
                   //   placeholder="name"
-                  {...register("name")}
+                onChange={(e)=>setName(e.target.value)}
                   className={inputFieldSTyle}
                 />
               </div>
@@ -163,6 +190,7 @@ const EditAdmin = () => {
                   type="text"
                   placeholder="what's app link"
                   value={wpLink}
+                  onChange={(e)=>setWpLink(e.target.value)}
                   className={inputFieldSTyle}
                 />
               </div>
@@ -188,15 +216,15 @@ const EditAdmin = () => {
               </div>
 
               {/* Supervisor */}
-              <div>
+              <div className={`${selectedType === "সাইট এডমিন" ? "hidden" : ""}`}>
                 <label className="text-gray-800 ">Supervisor</label>
-                <input
-                  type="text"
-                  placeholder="supervisor"
-                  value={superVisor}
-                  onChange={(e)=>setSuperVisor(e.target.value)}
-                  className={inputFieldSTyle}
-                />
+                <select defaultValue={adminId} onChange={(e)=>setAdminId(Number(e.target.value))} className={inputFieldSTyle}>                 
+                  {supervisors?.map((item, i) => (
+                    <option key={i} value={item?.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 

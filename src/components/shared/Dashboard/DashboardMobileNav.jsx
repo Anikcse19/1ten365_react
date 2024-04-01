@@ -80,7 +80,10 @@ const DashboardMobileNav = () => {
                 ))}
               </div>
             </div>
-              <div className="bg-slate-900 mx-4 text-white font-bold cursor-pointer py-3 text-center rounded-md">
+              <div onClick={()=>{
+                localStorage.removeItem('token')
+                navigate('/login')
+              }} className="bg-slate-900 mx-4 text-white font-bold cursor-pointer py-3 text-center rounded-md">
                 <span>Logout</span>
               </div>
           </div>

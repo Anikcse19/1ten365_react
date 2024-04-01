@@ -10,7 +10,7 @@ const Navbar = () => {
   const { pathname } = router;
 
   const token=localStorage.getItem('token')
-  console.log(token);
+  
 
   return (
     <div className="w-full">
