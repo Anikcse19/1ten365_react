@@ -118,8 +118,14 @@ const EditAdmin = () => {
       .then((data) => {
         reset();
         if(data?.msg=='success'){
-          toast.success('succesfully updated')
+          toast.success('succesfully updated',{
+            position:'top-right'
+          })
           router('/dashboard/viewAdmins')
+        }else{
+          toast.error(`${data.error}`,{
+            position:'top-right'
+          })
         }
         // Handle success response here
       })
@@ -231,7 +237,7 @@ const EditAdmin = () => {
             <div className="flex justify-end mt-6">
               <button
                 type="submit"
-                className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-800 hover:bg-gray-700 rounded-md  "
               >
                 Update
               </button>

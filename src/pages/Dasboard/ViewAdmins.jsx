@@ -37,6 +37,9 @@ const ViewAdmins=()=> {
       }).then(res=>setDatas(res?.data))
     } catch (error) {
       console.log(error);
+      toast.error(error,{
+        position:'top-right'
+      })
     }
   };
 
@@ -65,6 +68,9 @@ const ViewAdmins=()=> {
         })
       } catch (error) {
         console.log(error);
+        toast.error(error,{
+          position:'top-right'
+        })
       }
     
   };

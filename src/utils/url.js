@@ -1,4 +1,4 @@
-const base_url="https://api.aglist1ten365.com/api"
+const base_url="https://aglist1ten365.com/api"
 
 
 export default base_url

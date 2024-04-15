@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import DashboardLayout from "../../components/shared/Dashboard/DashboardLayout";
 import base_url from "../../utils/url";
 
@@ -79,9 +80,17 @@ const AddAdmin = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data){
-
+       
+        if(data.msg=='success'){
+          
+          toast.success('Successfully added',{
+            position:"top-right"
+          })
             reset();
+        }else{
+          toast.error(`${data.error} ? ${data.error} : ${data.msg}`,{
+            position:"top-right"
+          })
         }
         // Handle success response here
       })

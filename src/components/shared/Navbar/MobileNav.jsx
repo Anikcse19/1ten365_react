@@ -3,13 +3,14 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Drawer from 'react-modern-drawer';
 import "react-modern-drawer/dist/index.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { images } from "../../../../config";
 
 
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate=useNavigate()
   const router = useLocation();
   const { pathname } = router;
 
@@ -44,8 +45,8 @@ const MobileNav = () => {
       >
         <div className="px-4 py-2">
           <div className="flex flex-col gap-y-10">
-            <div className="flex justify-center">
-              <img width={120} height={90} src={images.logo} alt="" />
+            <div className="flex justify-center cursor-pointer">
+              <img onClick={()=>navigate('/adminHomePage')} width={120} height={90} src={images.logo} alt="" />
             </div>
 
             <div>

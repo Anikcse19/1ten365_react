@@ -36,8 +36,8 @@ const DashboardSidebar = () => {
         <div className="flex flex-col h-full">
           <div className="h-20 flex items-center px-8">
             <div 
-            onClick={()=>navigate('/')}
-            className="flex-none">
+            onClick={()=>navigate('/adminHomePage')}
+            className="flex-none cursor-pointer">
               <img src={images.logo} width={140} className="mx-auto" alt="" />
             </div>
           </div>

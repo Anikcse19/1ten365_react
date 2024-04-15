@@ -43,8 +43,8 @@ const DashboardMobileNav = () => {
   return (
     <div className="">
       <div className="h-[50px] w-full flex items-center justify-between px-5 shadow-md">
-        <div className="flex justify-center">
-          <img onClick={()=>{navigate('/')}} width={80} height={80} src={images.logo} alt="" />
+        <div className="flex justify-center cursor-pointer">
+          <img onClick={()=>{navigate('/adminHomePage')}} width={80} height={80} src={images.logo} alt="" />
         </div>
 
         <button onClick={toggleDrawer} className="text-2xl">
@@ -60,8 +60,8 @@ const DashboardMobileNav = () => {
       >
         <div className="px-4 py-2">
           <div className="flex flex-col gap-y-10">
-            <div className="flex justify-center">
-              <img width={120} height={90} src={images.logo} alt="" />
+            <div className="flex justify-center cursor-pointer">
+              <img onClick={()=>navigate('/adminHomePage')} width={120} height={90} src={images.logo} alt="" />
             </div>
 
             <div>

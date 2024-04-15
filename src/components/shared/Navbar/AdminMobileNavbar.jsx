@@ -127,7 +127,8 @@ const AdminMobileNavbar = () => {
             <GiHamburgerMenu />
           </button>
           <img
-            onClick={() => navigate("/")}
+            onClick={()=>navigate('/adminHomePage')}
+            className="cursor-pointer"
             width={70}
             height={70}
             src={images.logo}

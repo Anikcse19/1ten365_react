@@ -36,7 +36,7 @@ const SearchByNumber = () => {
       });
   };
 
-  // console.log(searchedResult[0],'aaaaaa');
+  
   return (
     <AdminLayout>
       <div className="bg-white  w-full lg:w-[76%] mx-auto min-h-screen my-2 p-5 lg:p-10">

@@ -38,7 +38,7 @@ export default function Home() {
           <Navbar />
         </div>
         <div className="flex lg:hidden justify-between items-center shadow-md px-4 py-2">
-          <img width={120} height={90} src={images.logo} alt="" />
+          <img onClick={()=>navigate('/adminHomePage')} className="cursor-pointer" width={120} height={90} src={images.logo} alt="" />
           <MobileNav />
         </div>
       </>
