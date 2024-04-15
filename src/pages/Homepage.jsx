@@ -64,7 +64,7 @@ export default function Home() {
                       Agent ID:
                     </span>
                     <span className="text-[#FF5F00] text-2xl font-bold">
-                      {quickAgent?.input_id}
+                    {quickAgent?.input_id ? quickAgent?.input_id : "---" }
                     </span>
                   </div>
                   {/* what's app number */}
