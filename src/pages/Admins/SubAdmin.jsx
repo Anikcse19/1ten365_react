@@ -256,6 +256,10 @@ const SubAdminPage = () => {
 
           {/* poster start */}
           <div className="w-[100%] md:w-[80%] mx-auto p-5 my-10">
+           {/* {
+            !images.subAdminPoster && 
+            <div className="animate-pulse w-96 h-40"/>
+           } */}
             <img
               width={400}
               height={200}

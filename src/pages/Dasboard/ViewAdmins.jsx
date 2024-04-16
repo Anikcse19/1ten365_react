@@ -107,6 +107,12 @@ const ViewAdmins=()=> {
                 </tr>
               </thead>
               <tbody className="text-slate-800 divide-y">
+                {
+                 ! datas?.admins?.length >0 && (
+                    <tr className="animate-pulse text-center bg-gray-500 w-full h-[500px]">
+                      <td colSpan={6} className="text-white font-bold">Loading...</td>
+                    </tr>                  )
+                }
                 {datas?.admins?.map((item, idx) => (
                   <tr key={idx}>
                     <td className="px-6 py-4 whitespace-nowrap">

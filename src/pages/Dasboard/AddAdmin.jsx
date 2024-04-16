@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/shared/Dashboard/DashboardLayout";
 import base_url from "../../utils/url";
 
@@ -11,6 +12,7 @@ const AddAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const [types, setTypes] = useState();
   const [selectedType, setSelectedType] = useState("");
+  const navigate=useNavigate()
 
   // const filteredAdmins = types?.filter((item) => item !== "সাইট এডমিন");
 
@@ -87,6 +89,8 @@ const AddAdmin = () => {
             position:"top-right"
           })
             reset();
+            navigate('/dashboard/viewAdmins')
+
         }else{
           toast.error(`${data.error} ? ${data.error} : ${data.msg}`,{
             position:"top-right"

@@ -44,9 +44,22 @@ const CustomService = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => res.json()).then(data=>{
+        if(data.msg=='success'){
+          toast.success('Created new quick agent',{
+            position:'top-right'
+          })
+        }else{
+          toast.error(`${data.error}`,{
+            position:'top-right'
+          })
+        }
+      })
       .catch((error) => {
         console.error("Error posting data:", error);
+        toast.error(error,{
+          position:'top-right'
+        })
       });
   };
 

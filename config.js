@@ -1,20 +1,20 @@
 export const images={
-    "logo":'https://i.ibb.co/n7F1nPG/1ten365logo.png',
-    "custServicePoster":"https://i.ibb.co/J54cXgx/customer-service.png",
-    "oldNewNumberPoster":"https://i.ibb.co/YTKXYh5/agent-new-old-numbers.png",
-    "subAdminPoster":"https://i.ibb.co/VTfS47R/sub-admin-list.png",
-    "superAgentPoster":"https://i.ibb.co/5BgTdBN/super-agent-list.png",
-    "complainCenter":"https://i.ibb.co/Gpz8tf7/complain-center.png",
-    "conditionPoster":"https://i.ibb.co/CtDqfSF/1ten-T-C.png",
-    "fbGroupPoster":"https://i.ibb.co/L6Whny1/facebook-page.png",
-    "beAgent":"https://i.ibb.co/DtTtFjZ/how-to-became-a-master-agent.png",
-    "transacPoster":"https://i.ibb.co/VqMmB4x/payment-method.png",
-    "openAccPoster":"https://i.ibb.co/GJRZ4rb/how-to-create-account.png",
-    "proxyLinkPoster":"https://i.ibb.co/XzLNqcN/proxy-link.png",
-    "cardimg":"https://i.ibb.co/6mptyNh/home-img2.jpg",
-    "openAcc2":"https://i.ibb.co/M7SSmq0/home-img3.jpg",
-    'howManyAgent':"https://i.ibb.co/02Rg9tP/agent-type.png",
-    'workOfAgent':'https://i.ibb.co/vqBbxLp/why-agent-list.png'
+    "logo":'https://aglist1ten365.com/images/logo.png',
+    "custServicePoster":"https://aglist1ten365.com/images/custServicePoster.png",
+    "oldNewNumberPoster":"https://aglist1ten365.com/images/oldNewNumberPoster.png",
+    "subAdminPoster":"https://aglist1ten365.com/images/subAdminPoster.png",
+    "superAgentPoster":"https://aglist1ten365.com/images/superAgentPoster.png",
+    "complainCenter":"https://aglist1ten365.com/images/complainCenter.png",
+    "conditionPoster":"https://aglist1ten365.com/images/conditionPoster.png",
+    "fbGroupPoster":"https://aglist1ten365.com/images/fbGroupPoster.png",
+    "beAgent":"https://aglist1ten365.com/images/beAgent.png",
+    "transacPoster":"https://aglist1ten365.com/images/transacPoster.png",
+    "openAccPoster":"https://aglist1ten365.com/images/openAccPoster.png",
+    "proxyLinkPoster":"https://aglist1ten365.com/images/proxyLinkPoster.png",
+    "cardimg":"https://aglist1ten365.com/images/cardimg.png",
+    "openAcc2":"https://aglist1ten365.com/images/openAcc2.png",
+    'howManyAgent':"https://aglist1ten365.com/images/howManyAgent.png",
+    'workOfAgent':'https://aglist1ten365.com/images/workOfAgent.png'
 }
 
 
