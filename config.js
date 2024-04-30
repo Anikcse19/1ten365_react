@@ -4,6 +4,7 @@ export const images={
     "oldNewNumberPoster":"https://aglist1ten365.com/images/oldNewNumberPoster.png",
     "subAdminPoster":"https://aglist1ten365.com/images/subAdminPoster.png",
     "superAgentPoster":"https://aglist1ten365.com/images/superAgentPoster.png",
+    "agentPoster":"https://aglist1ten365.com/images/agentList.png",
     "complainCenter":"https://aglist1ten365.com/images/complainCenter.png",
     "conditionPoster":"https://aglist1ten365.com/images/conditionPoster.png",
     "fbGroupPoster":"https://aglist1ten365.com/images/fbGroupPoster.png",

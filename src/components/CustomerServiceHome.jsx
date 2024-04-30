@@ -16,7 +16,7 @@ const CustomerServiceHome = () => {
       title: "এজেন্ট লিষ্টঃ",
       link:'/admins/agent',
       des: "এজেন্ট দের সাথে লেনদেন এর আগে 1TEN নিয়ম গুলো জেনে নিন!! **প্রতারনার হাত থেকে বাচতে",
-      img: images.superAgentPoster,
+      img: images.agentPoster,
     },
     {
       title: "সুপার এজেন্ট লিষ্টঃ",

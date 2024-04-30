@@ -1,31 +1,23 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { images } from "../../../config";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
+import base_url from "../../utils/url";
 
 
 const ProxyLink = () => {
-  const links = [
-    {
-      id: 1,
-      title: "1ten365 সাইটের মেইন লিঙ্কঃ",
-      // link:'www.velki.live'
-    },
-    {
-      id: 2,
-      title: "1ten365 সাইটের মেইন লিঙ্কঃ",
-      // link:'www.nayaludis.com'
-    },
-    {
-      id: 3,
-      title: "1ten365 সাইটের প্রক্সী লিঙ্ক ১ঃ",
-      // link:'www.velki365.live'
-    },
-    {
-      id: 4,
-      title: "1ten365 সাইটের প্রক্সী লিঙ্ক ২ঃ",
-      // link:'www.velkiex123.live'
-    },
-  ];
+  const [configDatas,setConfigDatas]=useState([])
+
+  const token=localStorage.getItem('token')
+
+  useEffect(()=>{
+    axios.get(`${base_url}/config`,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }).then(res=>setConfigDatas(res?.data?.data))
+  },[])
   return (
     <AdminLayout>
       <div className="bg-white bg-green-20 mx-auto lg:w-[76%] min-h-screen">
@@ -46,30 +38,7 @@ const ProxyLink = () => {
             </div>
             
 
-            {/* proxy links */}
-            <div className="border-l-4 border-gray-600 mt-12">
-              {links?.map((link) => (
-                <div
-                  key={link?.id}
-                  className="mx-3 py-1 flex justify-between items-center border-b border-gray-500"
-                >
-                  <span className="font-bold">{link?.title}</span>
-                  <span className="cursor-pointer font-bold hover:text-red-600 hover:underline">
-                    {link?.link}
-                  </span>
-                </div>
-              ))}
-              <div className="text-center mt-10">
-                <span className="text-base md:text-xl font-bold ">
-                  ANROID APP LINKS: এন্ড্রয়েড এপ ডাউনলোড করতে এই লিঙ্ক এ ক্লিক
-                  করুন
-                </span>
-                <br />
-                <span className="text-base md:text-xl font-bold text-red-600 cursor-pointer">
-                  ডাউনলোড 1ten365 সাইটের এন্ড্রয়েড এপ
-                </span>
-              </div>
-            </div>
+            <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[10]?.value }}/>
           </div>
 
           {/* right grid */}

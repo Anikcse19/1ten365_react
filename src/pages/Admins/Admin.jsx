@@ -20,10 +20,12 @@ const AdminPage = () => {
     obj: {},
     status: false,
   });
+  const [configData,setConfigData]=useState({})
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    axios.get(`${base_url}/config`).then(res=>setConfigData(res?.data?.data[15]))
     fetch(`${base_url}/admins/types`, {
       method: "GET",
       headers: {
@@ -33,6 +35,7 @@ const AdminPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setTypes(data.types);
+        setAdminType(data?.types[0]);
       });
 
     fetch(`${base_url}/admins?type=এডমিন`, {
@@ -90,7 +93,7 @@ const AdminPage = () => {
                 onChange={(e) => setAdminType(e.target.value)}
                 className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
               >
-                {types?.slice(1, 5)?.map((type, i) => (
+                {types?.map((type, i) => (
                   <option key={i} value={type}>
                     {type}
                   </option>
@@ -257,14 +260,7 @@ const AdminPage = () => {
 
           {/* user alert start*/}
           <div className="w-[100%] md:w-[80%]  mx-2 md:mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
-            <p className="text-base lg:text-xl font-bold">
-              এজেন্ট দের সাথে লেনদেন এর আগে 1ten365 এর নিয়ম গুলো জেনে নিন!!
-            </p>
-            <p>
-              **প্রতারনার হাত থেকে বাচতে সবার আগে ভিজিট করুন 1ten365.com
-              **হোয়াটসঅ্যাপ ব্যাতিত অন্য কোন এপ এর মাধ্যমে যোগাযোগ বা লেনদেন
-              করা যাবে না এবং করলে তা গ্রহনযোগ্য হবে না।
-            </p>
+          <div dangerouslySetInnerHTML={{ __html: configData?.value }}/>
             <p className="text-center mt-5 text-lg lg:text-2xl font-bold">
               1ten365 Admin List
             </p>
@@ -313,12 +309,12 @@ const AdminPage = () => {
                     >
                       PHONE NUMBER
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
                     >
                       COMPALIN
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -349,7 +345,7 @@ const AdminPage = () => {
                         <td className="px-3 py-3 text-center font-bold text-red-500 hover:underline">
                           {admin?.profile?.phone}
                         </td>
-                        <td
+                        {/* <td
                           onClick={() => {
                             setSearchedResult({});
                             setUserNotFound(false);
@@ -371,7 +367,7 @@ const AdminPage = () => {
                           className="px-3 py-3 font-bold text-center cursor-pointer hover:underline text-red-500 "
                         >
                           অভিযোগ
-                        </td>
+                        </td> */}
                       </tr>
                     );
                   })}

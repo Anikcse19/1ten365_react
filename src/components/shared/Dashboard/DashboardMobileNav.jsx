@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { FaNotesMedical, FaPlus } from "react-icons/fa";
+import { FaAngleDown, FaAngleRight, FaNotesMedical, FaPlus } from "react-icons/fa";
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Drawer from 'react-modern-drawer';
@@ -13,6 +13,7 @@ import { images } from "../../../../config";
 
 const DashboardMobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSubMenu, setIsOpenSubMenu] = useState(true);
   const router = useLocation();
   const { pathname } = router;
   const navigate=useNavigate()
@@ -78,6 +79,30 @@ const DashboardMobileNav = () => {
                     </Link>
                   </div>
                 ))}
+
+<div className=" overflow-hidden relative">
+                <div
+                  onClick={() => setIsOpenSubMenu(!isOpenSubMenu)}
+                  className={`flex items-center gap-x-2 text-gray-600 p-2 rounded-lg  hover:bg-gray-50 active:bg-gray-100 duration-150 cursor-pointer
+                    ${pathname === "config" ? "bg-gray-200" : ""}`}
+                >
+                  
+                  <span className="flex justify-between items-center gap-4 text-black px-4"><p>Config</p>
+                  {
+                    isOpenSubMenu ? <FaAngleRight/> :  <FaAngleDown/>
+                  }
+                  </span>
+                </div>
+                <div
+                  className={`bg-gray-200 w-[200px] rounded-md px-4 transition-all duration-300 ease-in-out py-2 top-0 flex flex-col gap-y-3 mx-3  ${isOpenSubMenu ? "block":"hidden"} `}
+                >
+                  <span onClick={()=>navigate('/dashboard/config/shortcut')} className={`bg-gray-300 px-4 py-1 hover:bg-gray-700 cursor-pointer hover:text-white ${pathname.includes('/shortcut') && "bg-gray-700 text-white"}`}>Shortcut</span>
+
+
+                  <span onClick={()=>navigate('/dashboard/config/faq')} className={`bg-gray-300 px-4 py-1 hover:bg-gray-700 cursor-pointer hover:text-white ${pathname.includes('/faq') && "bg-gray-700 text-white"}`}>FAQ</span>
+                  <span onClick={()=>navigate('/dashboard/config/userAlert')} className={`bg-gray-300 px-4 py-1 hover:bg-gray-700 cursor-pointer hover:text-white ${pathname.includes('/userAlert') && "bg-gray-700 text-white"}`}>User Alert</span>
+                </div>
+              </div>
               </div>
             </div>
               <div onClick={()=>{

@@ -1,9 +1,23 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { images } from "../../../config";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
+import base_url from "../../utils/url";
 
 
 const FbGroupLinkPage = () => {
+  const [configDatas,setConfigDatas]=useState([])
+
+  const token=localStorage.getItem('token')
+
+  useEffect(()=>{
+    axios.get(`${base_url}/config`,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }).then(res=>setConfigDatas(res?.data?.data))
+  },[])
   return (
     <AdminLayout>
       <div className="bg-white w-full min-h-screen">
@@ -23,28 +37,7 @@ const FbGroupLinkPage = () => {
             </div>
           
 
-            {/* proxy links */}
-            <div className="border-l-4 border-gray-600 mt-12 px-3">
-              <div>
-                <h1 className="my-2 font-bold text-base md:text-xl">
-                  ফেসবুক লিঙ্ক:
-                </h1>
-                <span className="my-2 font-medium">
-                  <p>
-                    1Ten এর ১ টাই অফিসিয়াল ফেসবুক পেইজ আছে যেটা তে আপনি লাইক
-                    দিয়ে রাখতে পারেনঃ
-                  </p>
-                  <p>পেইজ লিঙ্ক হলঃ</p>
-                  <p>
-                    1Ten এর ১ টাই অফিসিয়াল ফেসবুক গ্রুপ আছে যে টা তে আপনি জয়েন
-                    করতে পারেনঃ
-                  </p>
-                  <p>ফেইসবুক গ্রুপ হলঃ</p>
-                </span>
-                <br />
-                
-              </div>
-            </div>
+            <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[7]?.value }}/>
 
             
           </div>

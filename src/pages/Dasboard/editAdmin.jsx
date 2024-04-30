@@ -64,7 +64,7 @@ const EditAdmin = () => {
 
   useEffect(() => {
       fetch(`${base_url}/admins?type=${
-        selectedType === "এডমিন" ? "সাইট এডমিন" :
+        
         selectedType === "সাব এডমিন"
           ? "এডমিন"
           : selectedType === "সুপার এজেন্ট"
@@ -101,7 +101,7 @@ const EditAdmin = () => {
       admin_id:adminId
     };
 
-    if (infos.type == "সাইট এডমিন") {
+    if (infos.type == "এডমিন") {
       delete infos.admin_id;
     }
 
@@ -222,12 +222,12 @@ const EditAdmin = () => {
               </div>
 
               {/* Supervisor */}
-              <div className={`${selectedType === "সাইট এডমিন" ? "hidden" : ""}`}>
+              <div className={`${selectedType === "এডমিন" ? "hidden" : ""}`}>
                 <label className="text-gray-800 ">Supervisor</label>
                 <select defaultValue={adminId} onChange={(e)=>setAdminId(Number(e.target.value))} className={inputFieldSTyle}>                 
                   {supervisors?.map((item, i) => (
                     <option key={i} value={item?.id}>
-                      {item.name}
+                      {`${item?.name} - ${item?.profile?.type}`}
                     </option>
                   ))}
                 </select>

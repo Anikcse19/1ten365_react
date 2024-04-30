@@ -15,11 +15,13 @@ const CustomService = () => {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerWp, setCustomerWP] = useState("");
+  const [quickAgent,setQuickAgent]=useState({})
   const router = useNavigate();
 
   const token=localStorage.getItem('token')
 
   useEffect(() => {
+    axios.get(`${base_url}/quick-agent`).then(res=>setQuickAgent(res?.data?.quickagent))
     fetch(`${base_url}/admins?type=এজেন্ট`, {
       headers: {
         "Content-Type": "application/json",
@@ -101,8 +103,10 @@ const CustomService = () => {
 
         {/* Select Quick Agent */}
         <div className="lg:w-[45%] mx-auto mt-10 bg-gray-200 p-5">
+          <span className="my-4 block">Quick Agent: <p className="text-green-600 text-2xl font-bold inline">{quickAgent?.name}</p></span>
           <label className="text-slate-900 font-bold">Select Quick Agent</label>
-          <select onChange={handleTypeChange} className={inputFieldSTyle}>
+          <select  onChange={handleTypeChange} className={inputFieldSTyle}>
+            <option value="">Select Agent</option>
             {adminId?.map((item, i) => (
               <option key={i} value={item.id}>
                 {item?.name}

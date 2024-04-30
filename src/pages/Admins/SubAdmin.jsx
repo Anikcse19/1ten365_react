@@ -20,12 +20,13 @@ const SubAdminPage = () => {
   const [currentSelected,setCurrentSelected]=useState({
     obj:{},status:false
   })
-
+  const [configData,setConfigData]=useState({})
   const navigate=useNavigate()
 
 
 
   useEffect(() => {
+    axios.get(`${base_url}/config`).then(res=>setConfigData(res?.data?.data[14]))
     fetch(`${base_url}/admins/types`, {
       method: "GET",
       headers: {
@@ -35,7 +36,7 @@ const SubAdminPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setTypes(data.types);
-        setAdminType(types[2]);
+        setAdminType(data?.types[1]);
       });
 
     fetch(`${base_url}/admins?type=এডমিন`, {
@@ -48,7 +49,8 @@ const SubAdminPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setAdmins(data.admins);
+        
+        setAdmins(data?.admins);
       });
   }, []);
 
@@ -96,7 +98,7 @@ const SubAdminPage = () => {
                 onChange={(e) => setAdminType(e.target.value)}
                 className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
               >
-                {types?.slice(1, 5)?.map((type, i) => (
+                {types?.map((type, i) => (
                   <option key={i} value={type}>
                     {type}
                   </option>
@@ -160,7 +162,8 @@ const SubAdminPage = () => {
           )}
           
           {searchedResult?.id && (
-            <div className="w-[90%] md:w-[80%] mx-auto bg-white  p-5 my-10">
+            <div className="md:w-[80%] w-[90%] mx-auto bg-white  p-5 my-10">
+              
               {/* show search admin details start*/}
               <p className="text-center text-base lg:text-lg font-bold mb-3">
                 উনি 1ten365 এর একজন অনলাইন {searchedResult?.profile?.type}{" "}
@@ -170,7 +173,7 @@ const SubAdminPage = () => {
                 {/* 1st row start */}
                 <div className="w-full flex border border-black p-3 bg-blue-300">
                   <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                    <p className="text-black">উনার এডমিন আইডিঃ </p>
+                    <p className="text-black">উনার {searchedResult?.profile?.type} আইডিঃ </p>
                   </div>
                   <div className=" w-[50%] h-full flex justify-center items-center text-white">
                     <p className="text-black">{searchedResult?.input_id}</p>
@@ -199,25 +202,23 @@ const SubAdminPage = () => {
                 </div>
                 {/* 2nd row end */}
               </div>
-
               {/* show search admin details end*/}
 
               {/* show parent admin details start*/}
-
               {searchedResult?.super?.id && (
                 <div>
                   <p className="text-center text-base lg:text-lg font-bold m-3">
-                    এই 1ten365 এর অনলাইন সাব এডমিন এর আপলাইনের তথ্যঃ
+                    এই 1ten365 এর অনলাইন {searchedResult?.profile?.type} এর আপলাইনের তথ্যঃ
                   </p>
                   <p className="text-center text-base lg:text-lg  mb-3">
-                    উপরের সাব এডমিন এর বিরুদ্ধে অভিযোগ করতে হলে নিচের যে কোন
-                    নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই হবে
+                    উপরের {searchedResult?.profile?.type} এর এর বিরুদ্ধে অভিযোগ করতে হলে নিচের যে
+                    কোন নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই হবে
                   </p>
                   <div className=" w-full border border-black flex flex-col p-2">
                     {/* 1st row start */}
                     <div className="w-full flex border border-black p-3 bg-blue-300">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                        <p className="text-black">উনার এডমিন এর এডমিন আইডিঃ </p>
+                        <p className="text-black px-1">উনার {searchedResult?.super?.profile?.type} এর {searchedResult?.super?.profile?.type} আইডিঃ </p>
                       </div>
                       <div className=" w-[50%] h-full flex justify-center items-center text-white">
                         <p className="text-black">2</p>
@@ -228,8 +229,8 @@ const SubAdminPage = () => {
                     {/* 2nd row start */}
                     <div className=" w-full flex border border-black p-3 bg-blue-100">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                        <p className="text-black">
-                          উনার এডমিন এর হোয়াটসঅ্যাপ নাম্বারঃ
+                        <p className="text-black px-1">
+                          উনার {searchedResult?.super?.profile?.type} এর হোয়াটসঅ্যাপ নাম্বারঃ
                         </p>
                       </div>
                       <div className=" w-[50%] h-full flex gap-3 justify-center items-center text-white">
@@ -248,7 +249,6 @@ const SubAdminPage = () => {
                   </div>
                 </div>
               )}
-
               {/* show parent admin details end*/}
             </div>
           )}
@@ -272,14 +272,7 @@ const SubAdminPage = () => {
 
           {/* user alert start*/}
           <div className="w-[100%] md:w-[80%] mx-2 md:mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
-            <p className="text-base lg:text-xl font-bold">
-              এজেন্ট দের সাথে লেনদেন এর আগে 1ten এর নিয়ম গুলো জেনে নিন!!
-            </p>
-            <p>
-              **প্রতারনার হাত থেকে বাচতে সবার আগে ভিজিট করুন 1ten365.com
-              **হোয়াটসঅ্যাপ ব্যাতিত অন্য কোন এপ এর মাধ্যমে যোগাযোগ বা লেনদেন
-              করা যাবে না এবং করলে তা গ্রহনযোগ্য হবে না।
-            </p>
+          <div dangerouslySetInnerHTML={{ __html: configData?.value }}/>
             <p className="text-center mt-5 text-lg lg:text-2xl font-bold">
               1ten365 Sub Admin List
             </p>

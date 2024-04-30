@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ const AddAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const [types, setTypes] = useState();
   const [selectedType, setSelectedType] = useState("");
+  const nameRef=useRef()
   const navigate=useNavigate()
 
   // const filteredAdmins = types?.filter((item) => item !== "সাইট এডমিন");
@@ -19,6 +20,7 @@ const AddAdmin = () => {
   const token=localStorage.getItem('token')
 
   useEffect(() => {
+    
     fetch(`${base_url}/admins/types`, {
       headers: {
         Accept: "application/json",
@@ -39,7 +41,7 @@ const AddAdmin = () => {
   useEffect(() => {
     fetch(
       `${base_url}/admins?type=${
-        selectedType === "এডমিন" ? "সাইট এডমিন" :
+        
         selectedType === "সাব এডমিন"
           ? "এডমিন"
           : selectedType === "সুপার এজেন্ট"
@@ -67,7 +69,7 @@ const AddAdmin = () => {
       type: selectedType,
     };
 
-    if (infos.type == "সাইট এডমিন") {
+    if (infos.type == "এডমিন") {
       delete infos.admin_id;
     }
 
@@ -121,6 +123,7 @@ const AddAdmin = () => {
               <div>
                 <label className="text-gray-800 ">Name</label>
                 <input
+                ref={nameRef}
                   type="text"
                   placeholder="name"
                   {...register("name")}
@@ -181,13 +184,13 @@ const AddAdmin = () => {
               </div>
 
               {/* Supervisor */}
-              <div className={`${selectedType === "সাইট এডমিন" ? "hidden" : ""}`}>
+              <div className={`${selectedType === "এডমিন" ? "hidden" : ""}`}>
                 <label className="text-gray-800 ">Supervisor</label>
                 <select {...register("admin_id")} className={inputFieldSTyle}>
+                  
                   <option hidden>
                     Select-
-                    {selectedType === "সাইট এডমিন"
-                    ? "Site Admin" :
+                    {
                   selectedType === "এডমিন"
                     ? "Site Admin" 
                       : selectedType === "সাব এডমিন"
@@ -198,9 +201,14 @@ const AddAdmin = () => {
                       ? "Super Agent"
                       : ""}
                   </option>
-                  {adminId?.map((item, i) => (
+                  {
+                    !selectedType && (
+                      <option value="">Select type first</option>
+                    )
+                  }
+                  {selectedType && adminId?.map((item, i) => (
                     <option key={i} value={item?.id}>
-                      {item.name}
+                     {`${item?.name} - ${item?.profile?.type}`}
                     </option>
                   ))}
                 </select>

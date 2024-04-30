@@ -1,9 +1,22 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { images } from "../../../config";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-
+import base_url from "../../utils/url";
 
 const HowToAgentPage = () => {
+  const [configDatas,setConfigDatas]=useState([])
+
+  const token=localStorage.getItem('token')
+
+  useEffect(()=>{
+    axios.get(`${base_url}/config`,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }).then(res=>setConfigDatas(res?.data?.data))
+  },[])
   return (
     <AdminLayout>
       <div className="bg-white w-full min-h-screen">
@@ -23,25 +36,7 @@ const HowToAgentPage = () => {
             </div>
             
 
-            {/* proxy links */}
-            <div className="border-l-4 border-gray-600 mt-12 px-3">
-              <div>
-                <h1 className="my-2 font-bold text-base md:text-xl">
-                  অনলাইন এজেন্ট হবার আগে আপনি লোকাল এজেন্ট হবার নিয়ম গুলো পড়ে
-                  নিনঃ
-                </h1>
-                <span className="my-2 font-medium">
-                  ** অনলাইন এজেন্ট এর পয়েন্ট প্রাইস ফিক্সড ৯৩ টাকা করে। <br />
-                  ** ২ লক্ষ টাকা জমা দিতে হবে, যা অফেরত যোগ্য।
-                  <br />
-                  ** যদি কোম্পানীর বিকাশ – নগদ এজেন্ট ব্যবহার করেন – তাহলে
-                  পয়েন্ট এর দাম হবে ৯৫ টাকা। <br />
-                  ** অনলাইন এজেন্ট কোন ভাবেই নিজে বেট ধরতে পারবেন না। যদি কোন
-                  ভাবে নিজে খেলেন, তাহলে অনতি বিলম্বে তাকে বাদ দেয়া হবে।
-                </span>
-                <br />
-              </div>
-            </div>
+            <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[8]?.value }}/>
           </div>
         </div>
       </div>

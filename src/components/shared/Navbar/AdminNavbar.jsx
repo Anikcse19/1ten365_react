@@ -21,9 +21,9 @@ const AdminNavbar = () => {
     { title: "সুপার এজেন্ট লিষ্ট", url: "/admins/superAgent" },
 
     { title: "সাব এডমিন লিষ্ট", url: "/admins/subAdmin" },
-    { title: "এডমিন লিষ্ট", url: "/admins/admin" },
-    { title: "সাইট এডমিন লিষ্ট", url: "/admins/siteAdmin" },
-    { title: "কাস্টোমার সার্ভিস লিষ্ট", url: "/admins/customerService" },
+    { title: "এডমিন", url: "/admins/admin" },
+    // { title: "সাইট এডমিন লিষ্ট", url: "/admins/siteAdmin" },
+    { title: "কাস্টোমার সার্ভিস", url: "/admins/customerService" },
   ];
 
   return (

@@ -5,7 +5,7 @@ export default function PrivateRoute({ children }) {
 
   if (!token) {
 
-    return <Navigate to="/auth/login" replace={true} />;
+    return <Navigate to="/login" replace={true} />;
   }
 
   return children;

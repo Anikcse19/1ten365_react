@@ -111,9 +111,9 @@ const AdminMobileNavbar = () => {
     { name: "সুপার এজেন্ট লিষ্ট", href: "/admins/superAgent" },
    
     { name: "সাব এডমিন লিষ্ট", href: "/admins/subAdmin" },
-    { name: "এডমিন লিষ্ট", href: "/admins/admin" },
-    { name: "সাইট এডমিন লিষ্ট", href: "/admins/siteAdmin" },
-    { name: "কাস্টোমার সার্ভিস লিষ্ট", href: "/admins/customerService" },
+    { name: "এডমিন", href: "/admins/admin" },
+    // { name: "সাইট এডমিন", href: "/admins/siteAdmin" },
+    { name: "কাস্টোমার সার্ভিস", href: "/admins/customerService" },
   ];
 
   return (

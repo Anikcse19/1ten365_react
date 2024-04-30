@@ -1,14 +1,29 @@
 
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FaThList } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoGridSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { images } from "../../../config";
+import base_url from "../../utils/url";
 
 
 
 const FAQSection = () => {
   const navigate=useNavigate()
+
+  const [configDatas,setConfigDatas]=useState([])
+
+  const token=localStorage.getItem('token')
+
+  useEffect(()=>{
+    axios.get(`${base_url}/config`,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }).then(res=>setConfigDatas(res?.data?.data))
+  },[])
   
   const faqs = [
     { title: "1TEN তে কিভাবে লেনদেন করবেন?", url: "/faq/howToTransaction", img: images.transacPoster },
@@ -59,24 +74,7 @@ const FAQSection = () => {
 
         <h2 className="mt-7 text-lg font-semibold">1TEN প্রক্সি লিঙ্ক</h2>
 
-        <div className="mt-8">
-          <div className="border-b flex justify-between items-center pb-1 text-[12px] font-semibold lg:pr-20">
-            <span>1TEN সাইটের মেইন লিঙ্কঃ</span>
-            <span className=" text-red-600">www.1ten365.com</span>
-          </div>
-          <div className="mt-1 border-b flex justify-between items-center pb-1 text-[12px] font-semibold lg:pr-20">
-            <span>1TEN সাইটের মেইন লিঙ্কঃ</span>
-            <span className=" text-red-600">----</span>
-          </div>
-          <div className="mt-1 border-b flex justify-between items-center pb-1 text-[12px] font-semibold lg:pr-20">
-            <span>1TEN সাইটের প্রক্সী লিঙ্ক ১ঃ</span>
-            <span className=" text-red-600">www.1ten365.live</span>
-          </div>
-          <div className="mt-1 border-b flex justify-between items-center pb-1 text-[12px] font-semibold lg:pr-20">
-            <span>1TEN সাইটের প্রক্সী লিঙ্ক ২ঃ</span>
-            <span className=" text-red-600">www.1ten365.live</span>
-          </div>
-        </div>
+        <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[10]?.value }}/>
       </div>
 
       <div className="flex flex-col">

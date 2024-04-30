@@ -11,8 +11,11 @@ import VerifyAdmin from "../pages/Admins/VerifyAdmin";
 import Login from "../pages/Auth/Login";
 import AddAdmin from "../pages/Dasboard/AddAdmin";
 import CustomService from "../pages/Dasboard/CreateCustomerService";
+import FaqConfig from "../pages/Dasboard/FaqConfig";
+import ShortcutConfig from "../pages/Dasboard/ShortcutConfig";
 import ViewAdmins from "../pages/Dasboard/ViewAdmins";
 import EditAdmin from "../pages/Dasboard/editAdmin";
+import UserAlertConfig from "../pages/Dasboard/userAlertConfig";
 import AllFaq from "../pages/Faq/AllFaq";
 import ComplainAgentPage from "../pages/Faq/ComplainAgent";
 import ConditionPage from "../pages/Faq/Condition";
@@ -162,6 +165,30 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EditAdmin />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/config/shortcut",
+        element: (
+          <PrivateRoute>
+            <ShortcutConfig />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/config/faq",
+        element: (
+          <PrivateRoute>
+            <FaqConfig />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/config/userAlert",
+        element: (
+          <PrivateRoute>
+            <UserAlertConfig />
           </PrivateRoute>
         ),
       },

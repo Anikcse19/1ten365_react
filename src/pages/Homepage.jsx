@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { HiInformationCircle } from "react-icons/hi";
 
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../config";
 import Logo from "../components/shared/Logo";
@@ -12,10 +13,12 @@ import base_url from "../utils/url";
 
 export default function Home() {
   const [quickAgent, setQuickAgent] = useState({});
+  const [configDatas,setConfigDatas]=useState([])
  
   const navigate=useNavigate()
 
-
+  const token=localStorage.getItem('token')
+  
   useEffect(() => {
     fetch(`${base_url}/quick-agent`, {
       method: "GET",
@@ -28,7 +31,16 @@ export default function Home() {
       .then((data) => {
         setQuickAgent(data?.quickagent);
       });
+
+      // get config datas
+      axios.get(`${base_url}/config`,{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      }).then(res=>setConfigDatas(res?.data?.data))
   }, []);
+
+
 
   return (
     <div className="bg-[#FBD900] pb-5 lg:py-10">
@@ -110,11 +122,7 @@ export default function Home() {
           <div className=" bg-gray-600 px-2 md:px-5 py-2 md:py-12">
             <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500">
               <p className="text-base md:text-xl text-center md:text-left">
-                1ten এ একাউন্ট করতে হলে আপনার এজেন্ট এর মাধ্যমে একাউন্ট খুলতে
-                হবে। এজেন্ট এর মাধ্যমেই টাকা ডিপোজিট এবং উইথড্র করতে হবে। আপনি
-                যে এজেন্ট এর কাছ থেকে একাউন্ট খুলবেন তার সাথেই সব সময় লেনদেন
-                করতে হবে। ঠিক কোন এজেন্ট কে টাকা দিবেন এবং কিভাবে তার সাথে
-                লেনদেন করবেন তার বুঝতে হলে আপনার নিম্বের তথ্য গুলো পড়া জরুরী।
+                {configDatas[0]?.value}
               </p>
             </div>
           </div>
@@ -135,14 +143,8 @@ export default function Home() {
           <div className=" bg-gray-600 px-2 md:px-5 py-2  md:py-12">
             <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500">
               <span className="text-base md:text-xl text-center md:text-left">
-                একাউন্ট খুলতে নিম্বের অনলাইন এজেন্ট লিস্ট এ ক্লিক করুন। এজেন্ট
-                লিষ্ট এর এজেন্ট দের সাথে ইউজার দের শুধু মাত্র হোয়াটসাপ এর
-                মাধ্যমে যোগাযোগ করতে হবে। হোয়াটসাপ ছাড়া অন্য কোন মাধ্যমে যোগাযোগ
-                করলে বা লেনদেন করলে তা গ্রহনযোগ্য হবে না। হোয়াটসাপ এ যোগাযোগ
-                করতে হলে এজেন্ট লিস্টে হোয়াটসাপ আইকন উপরে ক্লিক করুন অথবা ফোন
-                নাম্বার টি মোবাইলে সেভ করে তাকে হোয়াটসাপ এ মসেজ পাঠাতে পারবেন।
-                হোয়াটসাপ এপ টি আপনার মোবাইলে আগে থেকেই থাকতে হবে। না থাকলে গুগুল
-                প্লে থেকে ইন্সটল করে নিন।<p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline text-center cursor-pointer"> অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
+              {configDatas[1]?.value}
+              <p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline text-center cursor-pointer"> অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
               </span>
             </div>
           </div>
@@ -163,18 +165,7 @@ export default function Home() {
           <div className=" bg-gray-600 px-1 md:px-5 py-1 md:py-12">
             <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500 md:text-left">
               <span className="text-base md:text-xl">
-                <p onClick={()=>navigate('/admins/superAgent')} className="text-blue-600 underline cursor-pointer">
-                  অনলাইন সুপার এজেন্ট লিস্টঃ
-                </p>
-                সুপার এজেন্ট রা, ইউজার একাউন্ট এবং মাষ্টার এজেন্ট একাউন্ট খুলে
-                দিতে পারেন। কোন সুপার এজেন্ট এর নামে অভিযোগ থাকলে - সরাসরি এডমিন
-                কে জানাতে হবে। উপরে মেনু তে এডমিন লিষ্ট দেয়া আছে।
-                <p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline cursor-pointer">
-                  অনলাইন মাষ্টার এজেন্ট লিস্টঃ
-                </p>
-                অনলাইন মাষ্টার এজেন্ট রা, শুধু ইউজার একাউন্ট একাউন্ট খুলে দিতে
-                পারেন। কোন মাষ্টার এজেন্ট এর নামে অভিযোগ থাকলে - সরাসরি সুপার
-                এজেন্ট এর কাছে অভিযোগ করতে হবে।
+              {configDatas[2]?.value}
                 <p onClick={()=>navigate('/faq/complainAgent')} className="text-blue-600 underline cursor-pointer">
                   বিস্তারিত জানতে এই লিঙ্ক এ ক্লিক করুন।
                 </p>

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { images } from "../../../config";
 import Complain from "../../components/shared/Complain/Complain";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
@@ -24,11 +25,13 @@ const Agent = () => {
   const [superAgents, setSuperAgents] = useState([]);
   const [userNotFound, setUserNotFound] = useState(false);
   const [currentSelected,setCurrentSelected]=useState({obj:{},status:false})
+  const [configData,setConfigData]=useState({})
   const navigate=useNavigate()
 
  
 
   useEffect(() => {
+    axios.get(`${base_url}/config`).then(res=>setConfigData(res?.data?.data[12]))
     fetch(`${base_url}/admins/types`, {
       method: "GET",
       headers: {
@@ -38,8 +41,8 @@ const Agent = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setTypes(data.types);
-        setAdminType(types[2]);
+        setTypes(data?.types);
+        setAdminType(data?.types[3]);
       });
 
     fetch(`${base_url}/admins?type=সুপার এজেন্ট`, {
@@ -85,6 +88,7 @@ const Agent = () => {
       <div>
         {/*Site admin config  start*/}
         <div className="w-full mt-6 lg:mt-12">
+
           {/* agent/admin search start */}
           <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
             <div>
@@ -103,7 +107,7 @@ const Agent = () => {
                 onChange={(e) => setAdminType(e.target.value)}
                 className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
               >
-                {types?.slice(1, 5)?.map((type, i) => (
+                {types?.map((type, i) => (
                   <option key={i} value={type}>
                     {type}
                   </option>
@@ -174,7 +178,7 @@ const Agent = () => {
                 {/* 1st row start */}
                 <div className="w-full flex border border-black p-3 bg-blue-300">
                   <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                    <p className="text-black">উনার এডমিন আইডিঃ </p>
+                    <p className="text-black">উনার {searchedResult?.profile?.type} আইডিঃ </p>
                   </div>
                   <div className=" w-[50%] h-full flex justify-center items-center text-white">
                     <p className="text-black">{searchedResult?.input_id}</p>
@@ -209,17 +213,17 @@ const Agent = () => {
               {searchedResult?.super?.id && (
                 <div>
                   <p className="text-center text-base lg:text-lg font-bold m-3">
-                    এই 1ten365 এর অনলাইন সাব এডমিন এর আপলাইনের তথ্যঃ
+                    এই 1ten365 এর অনলাইন {searchedResult?.profile?.type} এর আপলাইনের তথ্যঃ
                   </p>
                   <p className="text-center text-base lg:text-lg  mb-3">
-                    উপরের সুপার এজেন্ট এর এর বিরুদ্ধে অভিযোগ করতে হলে নিচের যে
+                    উপরের {searchedResult?.profile?.type} এর এর বিরুদ্ধে অভিযোগ করতে হলে নিচের যে
                     কোন নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই হবে
                   </p>
                   <div className=" w-full border border-black flex flex-col p-2">
                     {/* 1st row start */}
                     <div className="w-full flex border border-black p-3 bg-blue-300">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                        <p className="text-black px-1">উনার এডমিন এর এডমিন আইডিঃ </p>
+                        <p className="text-black px-1">উনার {searchedResult?.super?.profile?.type} এর {searchedResult?.super?.profile?.type} আইডিঃ </p>
                       </div>
                       <div className=" w-[50%] h-full flex justify-center items-center text-white">
                         <p className="text-black">2</p>
@@ -231,7 +235,7 @@ const Agent = () => {
                     <div className=" w-full flex border border-black p-3 bg-blue-100">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
                         <p className="text-black px-1">
-                          উনার এডমিন এর হোয়াটসঅ্যাপ নাম্বারঃ
+                          উনার {searchedResult?.super?.profile?.type} এর হোয়াটসঅ্যাপ নাম্বারঃ
                         </p>
                       </div>
                       <div className=" w-[50%] h-full flex gap-3 justify-center items-center text-white">
@@ -255,26 +259,22 @@ const Agent = () => {
           )}
           {/* show search result end */}
 
+           {/* poster start */}
+
+           <div className="lg:w-[80%] mx-auto my-10 px-5">
+            <img
+              width={1920}
+              height={1080}
+              className="w-full h-full object-cover"
+              src={images.agentPoster}
+              alt="poster"
+            />
+          </div>
+          {/* poster end */}
+
           {/* user alert start*/}
           <div className="md:w-[80%] w-[90%] mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
-            <p className="text-base lg:text-xl font-bold">
-              এজেন্ট দের সাথে লেনদেন এর আগে 1ten365 এর নিয়ম গুলো জেনে নিন!!
-            </p>
-            <p>
-              **প্রতারনার হাত থেকে বাচতে সবার আগে ভিজিট করুন 1Ten সাইটঃ
-              1ten365.com **হোয়াটসঅ্যাপ ব্যাতিত অন্য কোন এপ এর মাধ্যমে যোগাযোগ
-              বা লেনদেন করা যাবে না এবং করলে তা গ্রহনযোগ্য হবে না। **এজেন্ট
-              পাসোয়ার্ড পরিবর্তন করে দিলে - আপনি একাউন্টে ঢুকে আবার পাসোয়ার্ড
-              পরিবর্তন করে নিবেন। এজেন্ট যাতে কোন ভাবেই আপনার পাসোয়ার্ড না জানে।
-              আপনার পাসোয়ার্ড আপনি কাউকেই দিবেন না - সে যেই হউক না কেন। **সকাল
-              ৯ঃ৪৫ এর আগে এবং রাত ৯ঃ৪৫ এর পরে কোন ইউজার যদি এজেন্ট কে টাকা
-              পাঠায় – অই টাকার দায়ভার 1Ten নিবে না। **প্রতিবার এজেন্ট এর
-              কাছ থেকে পয়েন্ট নেবার আগে – এজেন্ট এর কাছে লেনদেন এর তথ্য জেনে
-              নিতে হবে। যেহেতু এজেন্ট এক এক সময় এক ভাবে লেনদেন করে সেহেতু এই
-              তথ্য জানা জরুরী। **এজেন্ট এর বিরুদ্ধে কোন অভিযোগ থাকলে এজেন্ট এর
-              নামের শেষে অভিযোগ বাটন এ ক্লিক করলে যে হোয়াটসঅ্যাপ নাম্বার আসবে -
-              তাকে অভিযোগ করতে হবে।
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: configData?.value }}/>
             <p className="text-center mt-5 text-lg lg:text-2xl font-bold">
               1ten365 Agent List
             </p>

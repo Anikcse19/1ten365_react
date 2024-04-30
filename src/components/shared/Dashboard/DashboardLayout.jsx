@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }) => {
 
 
   return (
-    <div className="max-w-screen min-h-screen flex lg:flex-row flex-col">
+    <div className="flex lg:flex-row flex-col relative">
 
       <div className="hidden lg:block lg:w-[21%] bg-green-100 h-full">
         <DashboardSidebar />
@@ -26,6 +26,12 @@ const DashboardLayout = ({ children }) => {
         )}
         {children}
       </div>
+
+      {/* <div className="h-[200px] w-[400px] bg-red-900 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <p>heloooooo</p>
+      </div> */}
+
+      
     </div>
   );
 };
