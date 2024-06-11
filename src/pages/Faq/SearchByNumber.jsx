@@ -7,16 +7,13 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
-
+import base_url from "../../utils/baseUrl";
 
 const SearchByNumber = () => {
   const [number, setNumber] = useState("");
   const [searchedResult, setSearchedResult] = useState({});
   const [userNotFound, setUserNotFound] = useState(false);
   const router = useNavigate();
-
-
 
   const handleAdminSearch = () => {
     setUserNotFound(false);
@@ -36,11 +33,10 @@ const SearchByNumber = () => {
       });
   };
 
-  
   return (
     <AdminLayout>
-      <div className="bg-white  w-full lg:w-[76%] mx-auto min-h-screen my-2 p-5 lg:p-10">
-        <div className=" flex flex-col  justify-center md:items-center gap-3 lg:gap-6 md:border border-gray-500 w-full shadow-lg">
+      <div className="bg-white  w-full lg:w-[90%] mx-auto min-h-screen my-2 p-5 lg:p-10">
+        <div className="w-[70%] mx-auto flex flex-col  justify-center md:items-center gap-3 lg:gap-6 md:border border-gray-500  shadow-lg">
           <div>
             <p className="text-2xl lg:font-bold text-center">
               ফোন নাম্বার দিয়ে সার্চ করুন:
@@ -48,11 +44,10 @@ const SearchByNumber = () => {
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="" className="text-base lg:text-lg font-bold">
-            ফোন নাম্বার:
+              ফোন নাম্বার:
             </label>
             <input
               value={number}
-              
               onChange={(e) => setNumber(e.target.value)}
               className="outline-none border-2 border-gray-400 px-2 py-1 w-full rounded"
               type="number"
@@ -166,7 +161,9 @@ const SearchByNumber = () => {
                         }}
                         className="text-base md:text-2xl text-green-500 font-bold cursor-pointer"
                       />
-                      <p className="text-black">{searchedResult?.profile?.wa_link}</p>
+                      <p className="text-black">
+                        {searchedResult?.profile?.wa_link}
+                      </p>
                     </div>
                   </div>
                   {/* 2nd row end */}
@@ -178,7 +175,7 @@ const SearchByNumber = () => {
         )}
         {/* show search result end */}
       </div>
-      <div className="lg:w-[76%] mx-auto ">
+      <div className="w-[90%] mx-auto mb-2">
         <FooterSection />
       </div>
     </AdminLayout>

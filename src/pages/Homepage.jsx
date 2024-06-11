@@ -8,17 +8,16 @@ import { images } from "../../config";
 import Logo from "../components/shared/Logo";
 import MobileNav from "../components/shared/Navbar/MobileNav";
 import Navbar from "../components/shared/Navbar/Navbar";
-import base_url from "../utils/url";
-
+import base_url from "../utils/baseUrl";
 
 export default function Home() {
   const [quickAgent, setQuickAgent] = useState({});
-  const [configDatas,setConfigDatas]=useState([])
- 
-  const navigate=useNavigate()
+  const [configDatas, setConfigDatas] = useState([]);
 
-  const token=localStorage.getItem('token')
-  
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     fetch(`${base_url}/quick-agent`, {
       method: "GET",
@@ -32,25 +31,32 @@ export default function Home() {
         setQuickAgent(data?.quickagent);
       });
 
-      // get config datas
-      axios.get(`${base_url}/config`,{
-        headers:{
-          Authorization:`Bearer ${token}`
-        }
-      }).then(res=>setConfigDatas(res?.data?.data))
+    // get config datas
+    axios
+      .get(`${base_url}/config`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setConfigDatas(res?.data?.data));
   }, []);
 
-
-
   return (
-    <div className="bg-[#FBD900] pb-5 lg:py-10">
+    <div className="bg-[#FBD900] min-h-screen pb-5 lg:py-10">
       <>
         <div className="hidden lg:block">
           <Logo />
           <Navbar />
         </div>
         <div className="flex lg:hidden justify-between items-center shadow-md px-4 py-2">
-          <img onClick={()=>navigate('/adminHomePage')} className="cursor-pointer" width={120} height={90} src={images.logo} alt="" />
+          <img
+            onClick={() => navigate("/adminHomePage")}
+            className="cursor-pointer"
+            width={120}
+            height={90}
+            src={images.logo}
+            alt=""
+          />
           <MobileNav />
         </div>
       </>
@@ -72,11 +78,9 @@ export default function Home() {
                 <div className="flex flex-col justify-center gap-2 ">
                   {/* agent id */}
                   <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold">
-                      Agent ID:
-                    </span>
+                    <span className="text-2xl font-bold">Agent ID:</span>
                     <span className="text-[#FF5F00] text-2xl font-bold">
-                    {quickAgent?.input_id ? quickAgent?.input_id : "---" }
+                      {quickAgent?.input_id ? quickAgent?.input_id : "---"}
                     </span>
                   </div>
                   {/* what's app number */}
@@ -143,8 +147,14 @@ export default function Home() {
           <div className=" bg-gray-600 px-2 md:px-5 py-2  md:py-12">
             <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500">
               <span className="text-base md:text-xl text-center md:text-left">
-              {configDatas[1]?.value}
-              <p onClick={()=>navigate('/admins/agent')} className="text-blue-600 underline text-center cursor-pointer"> অনলাইন মাষ্টার এজেন্ট লিস্টঃ</p>
+                {configDatas[1]?.value}
+                <p
+                  onClick={() => navigate("/admins/agent")}
+                  className="text-blue-600 underline text-center cursor-pointer"
+                >
+                  {" "}
+                  অনলাইন মাষ্টার এজেন্ট লিস্টঃ
+                </p>
               </span>
             </div>
           </div>
@@ -165,11 +175,13 @@ export default function Home() {
           <div className=" bg-gray-600 px-1 md:px-5 py-1 md:py-12">
             <div className="w-full bg-white px-1 md:px-12 py-1 border border-orange-500 md:text-left">
               <span className="text-base md:text-xl">
-              {configDatas[2]?.value}
-                <p onClick={()=>navigate('/faq/complainAgent')} className="text-blue-600 underline cursor-pointer">
+                {configDatas[2]?.value}
+                <p
+                  onClick={() => navigate("/faq/complainAgent")}
+                  className="text-blue-600 underline cursor-pointer"
+                >
                   বিস্তারিত জানতে এই লিঙ্ক এ ক্লিক করুন।
                 </p>
-              
               </span>
             </div>
           </div>

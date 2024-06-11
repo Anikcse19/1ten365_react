@@ -1,4 +1,3 @@
-
 import { FaQuestion } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { IoSettings } from "react-icons/io5";
@@ -9,84 +8,83 @@ const Navbar = () => {
   const router = useLocation();
   const { pathname } = router;
 
-  const token=localStorage.getItem('token')
-  
+  const token = localStorage.getItem("token");
 
   return (
     <div className="w-full">
       <div className="w-[95%] mx-auto bg-gray-200  py-1">
         <div className="flex justify-center gap-2 lg:gap-5 w-full">
           <Link
-            className={`text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1 ${
+            className={`text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1 ${
               pathname == "/" && "bg-gray-900 text-white"
             }`}
             to="/"
           >
-            <IoMdHome/>
+            <IoMdHome />
             হোম
           </Link>
           <Link
-            className={`text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1 ${
+            className={`text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1 ${
               pathname == "/admins/customerService" && "bg-gray-900 text-white"
             }`}
             to="/admins/customerService"
           >
-            <FaQuestion/>
+            <FaQuestion />
             কাস্টমার সার্ভিস
           </Link>
 
           <Link
             className={`${
               pathname === "/faq/oldNewNumber" && "bg-gray-900 text-white"
-            } text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
+            } text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
             to="/faq/oldNewNumber"
           >
-            <IoSettings/>
+            <IoSettings />
             ওল্ড/নিউ
           </Link>
           <Link
             className={`${
               pathname === "/admins/admin" && "bg-gray-900 text-white"
-            } text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
+            } text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
             to="/admins/admin"
           >
-             <IoSettings/>
+            <IoSettings />
             এডমিন
           </Link>
           <Link
             className={`${
               pathname === "/admins/subAdmin" && "bg-gray-900 text-white"
-            } text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
+            } text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
             to="/admins/subAdmin"
           >
-             <IoSettings/>
+            <IoSettings />
             সাব-এডমিন
           </Link>
           <Link
             className={`${
               pathname === "/admins/superAgent" && "bg-gray-900 text-white"
-            } text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
+            } text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1`}
             to="/admins/superAgent"
           >
-             <IoSettings/>
+            <IoSettings />
             সুপার-এজেন্ট
           </Link>
           <Link
             className={`${
               pathname === "/admins/agent" && "bg-gray-900 text-white"
-            } text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded  flex items-center gap-1`}
+            } text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded  flex items-center gap-1`}
             to="/admins/agent"
           >
-             <IoSettings/>
+            <IoSettings />
             এজেন্ট
           </Link>
 
           {token && (
             <Link
-              className="text-base md:text-xl font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1"
+              className="text-sm md:text-base font-bold  text-gray-700 hover:bg-gray-700 hover:text-white px-4 py-2 rounded flex items-center gap-1"
               to="/dashboard/viewAdmins"
             >
-              <MdDashboard/>
+              <MdDashboard />
               ড্যাশবোর্ড
             </Link>
           )}

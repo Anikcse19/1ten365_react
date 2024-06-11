@@ -3,21 +3,23 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../../config";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
+import base_url from "../../utils/baseUrl";
 
 const AllFaq = () => {
   const navigate = useNavigate();
-  const [configDatas,setConfigDatas]=useState([])
+  const [configDatas, setConfigDatas] = useState([]);
 
-  const token=localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
-  useEffect(()=>{
-    axios.get(`${base_url}/config`,{
-      headers:{
-        Authorization:`Bearer ${token}`
-      }
-    }).then(res=>setConfigDatas(res?.data?.data))
-  },[]);
+  useEffect(() => {
+    axios
+      .get(`${base_url}/config`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => setConfigDatas(res?.data?.data));
+  }, []);
   return (
     <AdminLayout>
       {/* proxylink start */}
@@ -42,7 +44,10 @@ const AllFaq = () => {
               </div>
 
               {/* proxy links */}
-              <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[10]?.value }}/>
+              <div
+                className="my-10"
+                dangerouslySetInnerHTML={{ __html: configDatas[10]?.value }}
+              />
             </div>
 
             {/* right grid */}
@@ -73,7 +78,10 @@ const AllFaq = () => {
                   />
                 </div>
 
-                <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[9]?.value }}/>
+                <div
+                  className="my-10"
+                  dangerouslySetInnerHTML={{ __html: configDatas[9]?.value }}
+                />
                 <div className="w-[90%] mx-auto absolute bottom-2  ">
                   <button
                     onClick={() => navigate("/faq/complainAgent")}
@@ -107,7 +115,10 @@ const AllFaq = () => {
                 </div>
 
                 {/* proxy links */}
-                <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[5]?.value }}/>
+                <div
+                  className="my-10"
+                  dangerouslySetInnerHTML={{ __html: configDatas[5]?.value }}
+                />
                 <div className="w-[90%] mx-auto absolute bottom-2  ">
                   <button
                     onClick={() => navigate("/faq/openAccount")}
@@ -141,7 +152,10 @@ const AllFaq = () => {
                 </div>
 
                 {/* proxy links */}
-                <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[8]?.value }}/>
+                <div
+                  className="my-10"
+                  dangerouslySetInnerHTML={{ __html: configDatas[8]?.value }}
+                />
                 <div className="w-[90%] mx-auto absolute bottom-2  ">
                   <button
                     onClick={() => navigate("/faq/howToAgent")}
@@ -156,103 +170,107 @@ const AllFaq = () => {
         </div>
         {/* howtoagent end*/}
 
-
-         {/*condition start  */}
-      <div className="border border-gray-900 px-4 py-2 relative">
-        <div className="bg-white w-full min-h-screen">
-          <div className="">
+        {/*condition start  */}
+        <div className="border border-gray-900 px-4 py-2 relative">
+          <div className="bg-white w-full ">
             <div className="">
-              <p className="text-2xl md:text-xl font-bold">
-                একাউন্ট খোলার নিয়ম বা শর্ত গুলো কি কি?
-              </p>
+              <div className="flex flex-col">
+                <p className="text-2xl md:text-xl font-bold">
+                  একাউন্ট খোলার নিয়ম বা শর্ত গুলো কি কি?
+                </p>
 
-              <div className=" my-3">
-                <img
-                  width={400}
-                  height={200}
-                  className="w-[100%]"
-                  src={images.conditionPoster}
-                  alt="poster"
+                <div className=" my-3">
+                  <img
+                    width={400}
+                    height={200}
+                    className="w-[100%]"
+                    src={images.conditionPoster}
+                    alt="poster"
+                  />
+                </div>
+
+                <div
+                  className="my-10"
+                  dangerouslySetInnerHTML={{ __html: configDatas[6]?.value }}
                 />
-              </div>
-
-              <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[6]?.value }}/>
-              <div className="w-[90%] mx-auto absolute bottom-2  ">
+                <div className="w-[90%] mx-auto">
                   <button
                     onClick={() => navigate("/faq/condition")}
                     className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400"
                   >
-                    Read More...  একাউন্ট খোলার নিয়ম বা শর্ত গুলো কি কি?
+                    Read More... একাউন্ট খোলার নিয়ম বা শর্ত গুলো কি কি?
                   </button>
                 </div>
-              
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* condition end */}
+        {/* condition end */}
 
-
-      {/* howtotransac start */}
-      <div className="border border-gray-900 px-4 py-2 relative">
-        <div className="bg-white w-full min-h-screen">
-          <div className="">
+        {/* howtotransac start */}
+        <div className="border border-gray-900 px-4 py-2 relative">
+          <div className="bg-white w-full min-h-screen">
             <div className="">
-              <p className="text-2xl md:text-xl font-bold ">
-                1Ten তে কিভাবে লেনদেন করবেন?
-              </p>
-              <div className="my-3">
-                <img
-                  width={400}
-                  height={200}
-                  className="w-[100%]"
-                  src={images.transacPoster}
-                  alt="poster"
-                />
-              </div>
+              <div className="">
+                <p className="text-2xl md:text-xl font-bold ">
+                  1Ten তে কিভাবে লেনদেন করবেন?
+                </p>
+                <div className="my-3">
+                  <img
+                    width={400}
+                    height={200}
+                    className="w-[100%]"
+                    src={images.transacPoster}
+                    alt="poster"
+                  />
+                </div>
 
-              {/* proxy links */}
-              <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[4]?.value }}/>
-              {/* online pay */}
-              
-              <div className="w-[90%] mx-auto absolute bottom-2  ">
+                {/* proxy links */}
+                <div
+                  className="my-10"
+                  dangerouslySetInnerHTML={{ __html: configDatas[4]?.value }}
+                />
+                {/* online pay */}
+
+                <div className="w-[90%] mx-auto absolute bottom-2 px-2  ">
                   <button
                     onClick={() => navigate("/faq/howToTransaction")}
                     className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400"
                   >
-                    Read More...   1Ten তে কিভাবে লেনদেন করবেন?
+                    Read More... 1Ten তে কিভাবে লেনদেন করবেন?
                   </button>
                 </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* howtotransac end */}
+        {/* howtotransac end */}
 
+        {/* fbgroup start */}
 
-      {/* fbgroup start */}
+        <div className="border border-gray-900 px-4 py-2 relative w-fit">
+          <div className="bg-white w-full min-h-screen">
+            <div className="">
+              <div className="">
+                <p className="text-2xl md:text-xl font-bold ">
+                  1Ten এর ফেইসবুক গ্রুপ লিঙ্ক কোন টা?
+                </p>
+                <div className="my-3">
+                  <img
+                    width={400}
+                    height={200}
+                    className="w-[100%]"
+                    src={images.fbGroupPoster}
+                    alt="poster"
+                  />
+                </div>
 
-    <div className="border border-gray-900 px-4 py-2 relative">
-    <div className="bg-white w-full min-h-screen">
-        <div className="">
-          <div className="">
-          <p className="text-2xl md:text-xl font-bold ">
-              1Ten এর ফেইসবুক গ্রুপ লিঙ্ক কোন টা?
-            </p>
-            <div className="my-3">
-              <img
-                width={400}
-                height={200}
-                className="w-[100%]"
-                src={images.fbGroupPoster}
-                alt="poster"
-              />
-            </div>
-          
-
-            {/* proxy links */}
-            <div className="my-10" dangerouslySetInnerHTML={{ __html: configDatas[7]?.value }}/>
-            <div className="w-[90%] mx-auto absolute bottom-2  ">
+                {/* proxy links */}
+                <div
+                  className="my-10"
+                  dangerouslySetInnerHTML={{ __html: configDatas[7]?.value }}
+                />
+                <div className="w-[90%] mx-auto absolute bottom-2  ">
                   <button
                     onClick={() => navigate("/faq/fbGroup")}
                     className="mt-8 text-sm bg-gray-100 hover:bg-gray-300 w-full py-2 border border-slate-400"
@@ -260,18 +278,13 @@ const AllFaq = () => {
                     Read More...ফেসবুক লিঙ্ক:
                   </button>
                 </div>
-            
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-      {/*fbgroup end */}
+        {/*fbgroup end */}
       </div>
       {/* grid all remain start*/}
-
-    
-
-      
     </AdminLayout>
   );
 };

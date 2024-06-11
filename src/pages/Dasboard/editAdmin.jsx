@@ -1,32 +1,27 @@
-
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import DashboardLayout from "../../components/shared/Dashboard/DashboardLayout";
-import base_url from "../../utils/url";
-
-
+import base_url from "../../utils/baseUrl";
 
 const EditAdmin = () => {
-
-    
   const router = useNavigate();
   const { id } = useParams();
 
   const { register, handleSubmit, reset } = useForm();
   const [admiDetails, setAdminDetails] = useState();
-  const [types,setTypes]=useState([])
+  const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState("");
-  const [superVisor,setSuperVisor]=useState('')
-  const [name,setName]=useState('')
-  const [inputId,setInputId]=useState('')
-  const [wpLink,setWpLink]=useState('')
-  const [phone,setPhone]=useState('')
-  const [supervisors,setSupervisorsList]=useState([])
-  const [adminId,setAdminId]=useState('')
+  const [superVisor, setSuperVisor] = useState("");
+  const [name, setName] = useState("");
+  const [inputId, setInputId] = useState("");
+  const [wpLink, setWpLink] = useState("");
+  const [phone, setPhone] = useState("");
+  const [supervisors, setSupervisorsList] = useState([]);
+  const [adminId, setAdminId] = useState("");
 
-  const token=localStorage.getItem('token')
+  const token = localStorage.getItem("token");
   useEffect(() => {
     fetch(`${base_url}/admins/types`, {
       headers: {
@@ -39,32 +34,30 @@ const EditAdmin = () => {
       .then((data) => setTypes(data?.types))
       .catch((error) => console.error("Error fetching data:", error)); // Handle fetch errors
 
-
-      fetch(`${base_url}/admins/${id}`, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+    fetch(`${base_url}/admins/${id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAdminDetails(data);
+        setSelectedType(data?.admin?.profile?.type);
+        setSuperVisor(data?.admin?.super?.name);
+        setAdminId(data?.admin?.super?.id);
+        setName(data?.admin?.name);
+        setInputId(data?.admin?.input_id);
+        setWpLink(data?.admin?.profile?.wa_link);
+        setPhone(data?.admin?.profile?.phone);
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setAdminDetails(data)
-          setSelectedType(data?.admin?.profile?.type)
-          setSuperVisor(data?.admin?.super?.name)
-          setAdminId(data?.admin?.super?.id)
-          setName(data?.admin?.name)
-          setInputId(data?.admin?.input_id)
-          setWpLink(data?.admin?.profile?.wa_link)
-          setPhone(data?.admin?.profile?.phone)
-        })
-        .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-
   useEffect(() => {
-      fetch(`${base_url}/admins?type=${
-        
+    fetch(
+      `${base_url}/admins?type=${
         selectedType === "সাব এডমিন"
           ? "এডমিন"
           : selectedType === "সুপার এজেন্ট"
@@ -72,33 +65,31 @@ const EditAdmin = () => {
           : selectedType === "এজেন্ট"
           ? "সুপার এজেন্ট"
           : ""
-      }`,{
-        headers:{
-          Accept:'application/json'
-        }
-      }).then(res=>res.json()).then(data=>{
+      }`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
         setSupervisorsList(data?.admins);
-       
-      })
-
-
+      });
   }, [selectedType]);
-
-  
 
   const handleTypeChange = (event) => {
     setSelectedType(event.target.value);
   };
 
   const onSubmit = (data) => {
-
     const infos = {
-      name:name,
-      phone:phone,
-      wa_link:wpLink,
-      input_id:inputId,
+      name: name,
+      phone: phone,
+      wa_link: wpLink,
+      input_id: inputId,
       type: selectedType,
-      admin_id:adminId
+      admin_id: adminId,
     };
 
     if (infos.type == "এডমিন") {
@@ -117,15 +108,15 @@ const EditAdmin = () => {
       .then((res) => res.json())
       .then((data) => {
         reset();
-        if(data?.msg=='success'){
-          toast.success('succesfully updated',{
-            position:'top-right'
-          })
-          router('/dashboard/viewAdmins')
-        }else{
-          toast.error(`${data.error}`,{
-            position:'top-right'
-          })
+        if (data?.msg == "success") {
+          toast.success("succesfully updated", {
+            position: "top-right",
+          });
+          router("/dashboard/viewAdmins");
+        } else {
+          toast.error(`${data.error}`, {
+            position: "top-right",
+          });
         }
         // Handle success response here
       })
@@ -135,7 +126,6 @@ const EditAdmin = () => {
       });
   };
 
-  
   const inputFieldSTyle =
     "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring";
 
@@ -160,7 +150,7 @@ const EditAdmin = () => {
                   type="text"
                   value={name}
                   //   placeholder="name"
-                onChange={(e)=>setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   className={inputFieldSTyle}
                 />
               </div>
@@ -171,7 +161,7 @@ const EditAdmin = () => {
                 <input
                   type="number"
                   defaultValue={phone}
-                  onChange={(e)=>setPhone(e.target.value)}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="phone number"
                   className={inputFieldSTyle}
                 />
@@ -183,7 +173,7 @@ const EditAdmin = () => {
                 <input
                   type="number"
                   defaultValue={inputId}
-                  onChange={(e)=>setInputId(e.target.value)}
+                  onChange={(e) => setInputId(e.target.value)}
                   placeholder="input id"
                   className={inputFieldSTyle}
                 />
@@ -196,14 +186,14 @@ const EditAdmin = () => {
                   type="text"
                   placeholder="what's app link"
                   value={wpLink}
-                  onChange={(e)=>setWpLink(e.target.value)}
+                  onChange={(e) => setWpLink(e.target.value)}
                   className={inputFieldSTyle}
                 />
               </div>
 
               {/* Types */}
-             {/* Types */}
-             <div>
+              {/* Types */}
+              <div>
                 <label className="text-gray-800 ">Types</label>
                 <select
                   className={inputFieldSTyle}
@@ -224,7 +214,11 @@ const EditAdmin = () => {
               {/* Supervisor */}
               <div className={`${selectedType === "এডমিন" ? "hidden" : ""}`}>
                 <label className="text-gray-800 ">Supervisor</label>
-                <select defaultValue={adminId} onChange={(e)=>setAdminId(Number(e.target.value))} className={inputFieldSTyle}>                 
+                <select
+                  defaultValue={adminId}
+                  onChange={(e) => setAdminId(Number(e.target.value))}
+                  className={inputFieldSTyle}
+                >
                   {supervisors?.map((item, i) => (
                     <option key={i} value={item?.id}>
                       {`${item?.name} - ${item?.profile?.type}`}

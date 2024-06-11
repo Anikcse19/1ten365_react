@@ -4,29 +4,23 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { IoGridSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { images } from "../../../config";
-import base_url from "../../utils/url";
-
-
+import base_url from "../../utils/baseUrl";
 
 const RandomMasterAgent = () => {
   const [admins, setAdmins] = useState([]);
-  
-  const navigate=useNavigate()
 
- 
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`${base_url}/admins?type=এজেন্ট`, {
       headers: {
         "Content-Type": "application/json",
-        
       },
     })
       .then((res) => res.json())
       .then((data) => setAdmins(data?.admins))
       .catch((error) => console.error("Error fetching data:", error)); // Handle fetch errors
   }, []);
-
- 
 
   return (
     <div className="border mt-1">
@@ -43,14 +37,17 @@ const RandomMasterAgent = () => {
       </div>
 
       <div className="bg-slate-200 h-[55px] flex items-center px-5">
-        <button onClick={()=>navigate('/admins/agent')} className="flex items-center uppercase font-semibold gap-x-1.5 border px-2.5 bg-red-700 hover:bg-red-500 py-1 text-white">
-         Agent <FaArrowRightLong />
+        <button
+          onClick={() => navigate("/admins/agent")}
+          className="flex items-center uppercase font-semibold gap-x-1.5 border px-2.5 bg-red-700 hover:bg-red-500 py-1 text-white"
+        >
+          Agent <FaArrowRightLong />
         </button>
       </div>
 
       <div className="grid lg:grid-cols-4 items-center gap-4 p-5">
         {admins?.map((item, i) => (
-          <div  key={i} className="border pb-5">
+          <div key={i} className="border pb-5">
             <div className="relative ">
               <img
                 src={images.custServicePoster}
@@ -79,8 +76,8 @@ const RandomMasterAgent = () => {
                 </span>
               </div>
               <div className="mt-5 text-center">
-                এজেন্ট আইডিঃ {item?.profile?.user_id} <br />{" "}
-                হোয়াটসঅ্যাপ নাম্বারঃ <br />
+                এজেন্ট আইডিঃ {item?.profile?.user_id} <br /> হোয়াটসঅ্যাপ
+                নাম্বারঃ <br />
                 <span className="text-red-700 font-semibold">
                   {item?.profile?.phone}
                 </span>

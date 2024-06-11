@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 import { useEffect, useState } from "react";
@@ -8,14 +7,13 @@ import { images } from "../../../config";
 import Complain from "../../components/shared/Complain/Complain";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
+import base_url from "../../utils/baseUrl";
 
 // const Agent = () => {
 
 // const [adminType, setAdminType] = useState("");
 // const [adminId, setAdminId] = useState("");
 // const [searchedResult, setSearchedResult] = useState({});
-
 
 const Agent = () => {
   const [adminType, setAdminType] = useState("");
@@ -24,19 +22,21 @@ const Agent = () => {
   const [types, setTypes] = useState([]);
   const [superAgents, setSuperAgents] = useState([]);
   const [userNotFound, setUserNotFound] = useState(false);
-  const [currentSelected,setCurrentSelected]=useState({obj:{},status:false})
-  const [configData,setConfigData]=useState({})
-  const navigate=useNavigate()
-
- 
+  const [currentSelected, setCurrentSelected] = useState({
+    obj: {},
+    status: false,
+  });
+  const [configData, setConfigData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${base_url}/config`).then(res=>setConfigData(res?.data?.data[12]))
+    axios
+      .get(`${base_url}/config`)
+      .then((res) => setConfigData(res?.data?.data[12]));
     fetch(`${base_url}/admins/types`, {
       method: "GET",
       headers: {
         Accept: "application/json",
-        
       },
     })
       .then((res) => res.json())
@@ -50,7 +50,6 @@ const Agent = () => {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-    
       },
     })
       .then((res) => res.json())
@@ -61,13 +60,13 @@ const Agent = () => {
     setUserNotFound(false);
     setSearchedResult({});
     setCurrentSelected({
-      obj:{},status:false
-    })
+      obj: {},
+      status: false,
+    });
     axios
       .get(`${base_url}/admins/${adminId}?type=${adminType}`, {
         headers: {
           Accept: "application/json",
-      
         },
       })
       .then((res) => {
@@ -79,8 +78,6 @@ const Agent = () => {
       });
   };
 
-  
-
   // const complainElement=document.getElementById('complain')
 
   return (
@@ -88,7 +85,6 @@ const Agent = () => {
       <div>
         {/*Site admin config  start*/}
         <div className="w-full mt-6 lg:mt-12">
-
           {/* agent/admin search start */}
           <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
             <div>
@@ -98,53 +94,55 @@ const Agent = () => {
             </div>
 
             <div className="bg-gray-200 px-12 py-3 rounded-md shadow-lg flex flex-col justify-center md:items-center gap-3">
-            <div className="flex flex-col ">
-              <label htmlFor="" className="text-base lg:text-lg mb-1">
-                Agent Type:
-              </label>
-              <select
-                value={adminType}
-                onChange={(e) => setAdminType(e.target.value)}
-                className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
-              >
-                {types?.map((type, i) => (
-                  <option key={i} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col ">
-              <label htmlFor="" className="text-base lg:text-lg mb-1">
-                Agent ID:
-              </label>
-              <input
-                value={adminId}
-                onChange={(e) => setAdminId(e.target.value)}
-                className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[320px]"
-                type="number"
-              />
-            </div>
-            <div>
-              <button
-                onClick={handleAdminSearch}
-                className="bg-green-500 px-6 py-2 rounded text-white font-bold"
-              >
-                Submit
-              </button>
-            </div>
+              <div className="flex flex-col ">
+                <label htmlFor="" className="text-base lg:text-lg mb-1">
+                  Agent Type:
+                </label>
+                <select
+                  value={adminType}
+                  onChange={(e) => setAdminType(e.target.value)}
+                  className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
+                >
+                  {types?.map((type, i) => (
+                    <option key={i} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-col ">
+                <label htmlFor="" className="text-base lg:text-lg mb-1">
+                  Agent ID:
+                </label>
+                <input
+                  value={adminId}
+                  onChange={(e) => setAdminId(e.target.value)}
+                  className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[320px]"
+                  type="number"
+                />
+              </div>
+              <div>
+                <button
+                  onClick={handleAdminSearch}
+                  className="bg-green-500 px-6 py-2 rounded text-white font-bold"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
           {/* agent/admin search end */}
 
           {/* show Complain box start */}
-          {
-            currentSelected.status && (
-              <div id="complain">
-                <Complain from='agent' currentSelected={currentSelected} setCurrentSelected={setCurrentSelected}/>
-              </div>
-            )
-          }
+          {currentSelected.status && (
+            <div id="complain">
+              <Complain
+                from="agent"
+                currentSelected={currentSelected}
+                setCurrentSelected={setCurrentSelected}
+              />
+            </div>
+          )}
           {/* show Complain box end */}
 
           {/* show search result start */}
@@ -168,7 +166,6 @@ const Agent = () => {
           )}
           {searchedResult?.id && (
             <div className="md:w-[80%] w-[90%] mx-auto bg-white  p-5 my-10">
-              
               {/* show search admin details start*/}
               <p className="text-center text-base lg:text-lg font-bold mb-3">
                 উনি 1ten365 এর একজন অনলাইন {searchedResult?.profile?.type}{" "}
@@ -178,7 +175,9 @@ const Agent = () => {
                 {/* 1st row start */}
                 <div className="w-full flex border border-black p-3 bg-blue-300">
                   <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                    <p className="text-black">উনার {searchedResult?.profile?.type} আইডিঃ </p>
+                    <p className="text-black">
+                      উনার {searchedResult?.profile?.type} আইডিঃ{" "}
+                    </p>
                   </div>
                   <div className=" w-[50%] h-full flex justify-center items-center text-white">
                     <p className="text-black">{searchedResult?.input_id}</p>
@@ -213,17 +212,22 @@ const Agent = () => {
               {searchedResult?.super?.id && (
                 <div>
                   <p className="text-center text-base lg:text-lg font-bold m-3">
-                    এই 1ten365 এর অনলাইন {searchedResult?.profile?.type} এর আপলাইনের তথ্যঃ
+                    এই 1ten365 এর অনলাইন {searchedResult?.profile?.type} এর
+                    আপলাইনের তথ্যঃ
                   </p>
                   <p className="text-center text-base lg:text-lg  mb-3">
-                    উপরের {searchedResult?.profile?.type} এর এর বিরুদ্ধে অভিযোগ করতে হলে নিচের যে
-                    কোন নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই হবে
+                    উপরের {searchedResult?.profile?.type} এর এর বিরুদ্ধে অভিযোগ
+                    করতে হলে নিচের যে কোন নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই
+                    হবে
                   </p>
                   <div className=" w-full border border-black flex flex-col p-2">
                     {/* 1st row start */}
                     <div className="w-full flex border border-black p-3 bg-blue-300">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                        <p className="text-black px-1">উনার {searchedResult?.super?.profile?.type} এর {searchedResult?.super?.profile?.type} আইডিঃ </p>
+                        <p className="text-black px-1">
+                          উনার {searchedResult?.super?.profile?.type} এর{" "}
+                          {searchedResult?.super?.profile?.type} আইডিঃ{" "}
+                        </p>
                       </div>
                       <div className=" w-[50%] h-full flex justify-center items-center text-white">
                         <p className="text-black">2</p>
@@ -235,7 +239,8 @@ const Agent = () => {
                     <div className=" w-full flex border border-black p-3 bg-blue-100">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
                         <p className="text-black px-1">
-                          উনার {searchedResult?.super?.profile?.type} এর হোয়াটসঅ্যাপ নাম্বারঃ
+                          উনার {searchedResult?.super?.profile?.type} এর
+                          হোয়াটসঅ্যাপ নাম্বারঃ
                         </p>
                       </div>
                       <div className=" w-[50%] h-full flex gap-3 justify-center items-center text-white">
@@ -259,9 +264,9 @@ const Agent = () => {
           )}
           {/* show search result end */}
 
-           {/* poster start */}
+          {/* poster start */}
 
-           <div className="lg:w-[80%] mx-auto my-10 px-5">
+          <div className="lg:w-[80%] mx-auto my-10 px-5">
             <img
               width={1920}
               height={1080}
@@ -274,7 +279,7 @@ const Agent = () => {
 
           {/* user alert start*/}
           <div className="md:w-[80%] w-[90%] mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
-            <div dangerouslySetInnerHTML={{ __html: configData?.value }}/>
+            <div dangerouslySetInnerHTML={{ __html: configData?.value }} />
             <p className="text-center mt-5 text-lg lg:text-2xl font-bold">
               1ten365 Agent List
             </p>
@@ -307,32 +312,49 @@ const Agent = () => {
                     <p className="text-lg md:text-2xl font-bold inline">
                       {superAgent?.name}
                     </p>{" "}
-                    এর অধীনে সর্বমোট সুপার এজেন্ট আছে {superAgent?.children?.length}{" "}
-                    জন
+                    এর অধীনে সর্বমোট সুপার এজেন্ট আছে{" "}
+                    {superAgent?.children?.length} জন
                   </span>
                 )}
-                
               </div>
               <div className="w-full relative overflow-x-auto overflow-y-auto max-w-screen  max-h-screen mt-5 border-2 border-orange-700 ">
                 <table className="w-full">
                   <thead className="sticky top-0 text-base bg-gray-400 w-full">
                     <tr className="border-b border-orange-700 ">
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         ID NO
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         NAME
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         AGENT
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         APP
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         PHONE NUMBER
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         COMPALIN
                       </th>
                     </tr>
@@ -354,7 +376,6 @@ const Agent = () => {
                             {adminC?.profile?.type}
                           </td>
                           <td className="px-3 py-3 text-center flex justify-center items-center ">
-                            
                             <IoLogoWhatsapp
                               onClick={() => {
                                 window.open(
@@ -369,19 +390,21 @@ const Agent = () => {
                           </td>
                           <td
                             onClick={() => {
-                              setSearchedResult({})
-                              setUserNotFound(false)
+                              setSearchedResult({});
+                              setUserNotFound(false);
                               setCurrentSelected({
-                                obj:{},status:false
-                              })
-                              
+                                obj: {},
+                                status: false,
+                              });
+
                               window.scrollTo({
                                 top: 500,
-                                behavior: 'smooth' // This smooth scrolls the page to the top
+                                behavior: "smooth", // This smooth scrolls the page to the top
                               });
-                              
+
                               setCurrentSelected({
-                                obj:adminC,status:true
+                                obj: adminC,
+                                status: true,
                               });
                             }}
                             className="px-3 py-3 font-bold text-center cursor-pointer hover:underline text-red-500 hover:text-red-500"
@@ -400,8 +423,8 @@ const Agent = () => {
         </div>
       </div>
       <div className="w-[90%] mx-auto mb-2">
-    <FooterSection/>
-    </div>
+        <FooterSection />
+      </div>
     </AdminLayout>
   );
 };

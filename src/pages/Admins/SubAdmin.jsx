@@ -6,9 +6,7 @@ import { images } from "../../../config";
 import Complain from "../../components/shared/Complain/Complain";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
-
-
+import base_url from "../../utils/baseUrl";
 
 const SubAdminPage = () => {
   const [adminType, setAdminType] = useState("");
@@ -17,20 +15,21 @@ const SubAdminPage = () => {
   const [types, setTypes] = useState([]);
   const [admins, setAdmins] = useState([]);
   const [userNotFound, setUserNotFound] = useState(false);
-  const [currentSelected,setCurrentSelected]=useState({
-    obj:{},status:false
-  })
-  const [configData,setConfigData]=useState({})
-  const navigate=useNavigate()
-
-
+  const [currentSelected, setCurrentSelected] = useState({
+    obj: {},
+    status: false,
+  });
+  const [configData, setConfigData] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${base_url}/config`).then(res=>setConfigData(res?.data?.data[14]))
+    axios
+      .get(`${base_url}/config`)
+      .then((res) => setConfigData(res?.data?.data[14]));
     fetch(`${base_url}/admins/types`, {
       method: "GET",
       headers: {
-        Accept: "application/json",   
+        Accept: "application/json",
       },
     })
       .then((res) => res.json())
@@ -44,12 +43,10 @@ const SubAdminPage = () => {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-       
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        
         setAdmins(data?.admins);
       });
   }, []);
@@ -58,13 +55,13 @@ const SubAdminPage = () => {
     setUserNotFound(false);
     setSearchedResult({});
     setCurrentSelected({
-      obj:{},status:false
-    })
+      obj: {},
+      status: false,
+    });
     axios
       .get(`${base_url}/admins/${adminId}?type=${adminType}`, {
         headers: {
           Accept: "application/json",
-     
         },
       })
       .then((res) => {
@@ -80,8 +77,8 @@ const SubAdminPage = () => {
       <div>
         {/*Site admin config  start*/}
         <div className="w-full  mt-12">
-        {/* agent/admin search start */}
-        <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
+          {/* agent/admin search start */}
+          <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
             <div>
               <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
                 এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
@@ -89,47 +86,47 @@ const SubAdminPage = () => {
             </div>
 
             <div className="bg-gray-200 px-12 py-3 rounded-md shadow-lg flex flex-col justify-center md:items-center gap-3">
-            <div className="flex flex-col ">
-              <label htmlFor="" className="text-base lg:text-lg mb-1">
-                Agent Type:
-              </label>
-              <select
-                value={adminType}
-                onChange={(e) => setAdminType(e.target.value)}
-                className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
-              >
-                {types?.map((type, i) => (
-                  <option key={i} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col ">
-              <label htmlFor="" className="text-base lg:text-lg mb-1">
-                Agent ID:
-              </label>
-              <input
-                value={adminId}
-                onChange={(e) => setAdminId(e.target.value)}
-                className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[320px]"
-                type="number"
-              />
-            </div>
-            <div>
-              <button
-                onClick={handleAdminSearch}
-                className="bg-green-500 px-6 py-2 rounded text-white font-bold"
-              >
-                Submit
-              </button>
-            </div>
+              <div className="flex flex-col ">
+                <label htmlFor="" className="text-base lg:text-lg mb-1">
+                  Agent Type:
+                </label>
+                <select
+                  value={adminType}
+                  onChange={(e) => setAdminType(e.target.value)}
+                  className="outline-none border-2 w-full border-gray-500 rounded px-2 py-2 md:w-[320px]"
+                >
+                  {types?.map((type, i) => (
+                    <option key={i} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-col ">
+                <label htmlFor="" className="text-base lg:text-lg mb-1">
+                  Agent ID:
+                </label>
+                <input
+                  value={adminId}
+                  onChange={(e) => setAdminId(e.target.value)}
+                  className="outline-none border-2 border-gray-500 rounded px-2 py-2 w-full md:w-[320px]"
+                  type="number"
+                />
+              </div>
+              <div>
+                <button
+                  onClick={handleAdminSearch}
+                  className="bg-green-500 px-6 py-2 rounded text-white font-bold"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
           {/* agent/admin search end */}
 
-           {/* show Complain box start */}
-           {currentSelected.status && (
+          {/* show Complain box start */}
+          {currentSelected.status && (
             <div id="complain">
               <Complain
                 from="subAdmin"
@@ -160,10 +157,9 @@ const SubAdminPage = () => {
               </div>
             </div>
           )}
-          
+
           {searchedResult?.id && (
             <div className="md:w-[80%] w-[90%] mx-auto bg-white  p-5 my-10">
-              
               {/* show search admin details start*/}
               <p className="text-center text-base lg:text-lg font-bold mb-3">
                 উনি 1ten365 এর একজন অনলাইন {searchedResult?.profile?.type}{" "}
@@ -173,7 +169,9 @@ const SubAdminPage = () => {
                 {/* 1st row start */}
                 <div className="w-full flex border border-black p-3 bg-blue-300">
                   <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                    <p className="text-black">উনার {searchedResult?.profile?.type} আইডিঃ </p>
+                    <p className="text-black">
+                      উনার {searchedResult?.profile?.type} আইডিঃ{" "}
+                    </p>
                   </div>
                   <div className=" w-[50%] h-full flex justify-center items-center text-white">
                     <p className="text-black">{searchedResult?.input_id}</p>
@@ -208,17 +206,22 @@ const SubAdminPage = () => {
               {searchedResult?.super?.id && (
                 <div>
                   <p className="text-center text-base lg:text-lg font-bold m-3">
-                    এই 1ten365 এর অনলাইন {searchedResult?.profile?.type} এর আপলাইনের তথ্যঃ
+                    এই 1ten365 এর অনলাইন {searchedResult?.profile?.type} এর
+                    আপলাইনের তথ্যঃ
                   </p>
                   <p className="text-center text-base lg:text-lg  mb-3">
-                    উপরের {searchedResult?.profile?.type} এর এর বিরুদ্ধে অভিযোগ করতে হলে নিচের যে
-                    কোন নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই হবে
+                    উপরের {searchedResult?.profile?.type} এর এর বিরুদ্ধে অভিযোগ
+                    করতে হলে নিচের যে কোন নাম্বার এ হোয়াটসঅ্যাপ এ মেসেজ দিলেই
+                    হবে
                   </p>
                   <div className=" w-full border border-black flex flex-col p-2">
                     {/* 1st row start */}
                     <div className="w-full flex border border-black p-3 bg-blue-300">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
-                        <p className="text-black px-1">উনার {searchedResult?.super?.profile?.type} এর {searchedResult?.super?.profile?.type} আইডিঃ </p>
+                        <p className="text-black px-1">
+                          উনার {searchedResult?.super?.profile?.type} এর{" "}
+                          {searchedResult?.super?.profile?.type} আইডিঃ{" "}
+                        </p>
                       </div>
                       <div className=" w-[50%] h-full flex justify-center items-center text-white">
                         <p className="text-black">2</p>
@@ -230,7 +233,8 @@ const SubAdminPage = () => {
                     <div className=" w-full flex border border-black p-3 bg-blue-100">
                       <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
                         <p className="text-black px-1">
-                          উনার {searchedResult?.super?.profile?.type} এর হোয়াটসঅ্যাপ নাম্বারঃ
+                          উনার {searchedResult?.super?.profile?.type} এর
+                          হোয়াটসঅ্যাপ নাম্বারঃ
                         </p>
                       </div>
                       <div className=" w-[50%] h-full flex gap-3 justify-center items-center text-white">
@@ -256,7 +260,7 @@ const SubAdminPage = () => {
 
           {/* poster start */}
           <div className="w-[100%] md:w-[80%] mx-auto p-5 my-10">
-           {/* {
+            {/* {
             !images.subAdminPoster && 
             <div className="animate-pulse w-96 h-40"/>
            } */}
@@ -272,7 +276,7 @@ const SubAdminPage = () => {
 
           {/* user alert start*/}
           <div className="w-[100%] md:w-[80%] mx-2 md:mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
-          <div dangerouslySetInnerHTML={{ __html: configData?.value }}/>
+            <div dangerouslySetInnerHTML={{ __html: configData?.value }} />
             <p className="text-center mt-5 text-lg lg:text-2xl font-bold">
               1ten365 Sub Admin List
             </p>
@@ -298,22 +302,40 @@ const SubAdminPage = () => {
                 <table className="w-full">
                   <thead className="sticky top-0 text-base bg-gray-400 w-full">
                     <tr className="border-b border-orange-700 ">
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                      >
                         ID NO
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base"
+                      >
                         NAME
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base"
+                      >
                         AGENT
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base"
+                      >
                         APP
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base"
+                      >
                         PHONE NUMBER
                       </th>
-                      <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base">
+                      <th
+                        scope="col"
+                        className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base"
+                      >
                         COMPALIN
                       </th>
                     </tr>
@@ -349,25 +371,26 @@ const SubAdminPage = () => {
                             {adminC?.profile?.phone}
                           </td>
                           <td
-                           onClick={() => {
-                            setUserNotFound(false)
-                            setSearchedResult({})
-                            setCurrentSelected({
-                              obj: {},
-                              status: false,
-                            });
+                            onClick={() => {
+                              setUserNotFound(false);
+                              setSearchedResult({});
+                              setCurrentSelected({
+                                obj: {},
+                                status: false,
+                              });
 
-                            window.scrollTo({
-                              top: 500,
-                              behavior: "smooth", // This smooth scrolls the page to the top
-                            });
+                              window.scrollTo({
+                                top: 500,
+                                behavior: "smooth", // This smooth scrolls the page to the top
+                              });
 
-                            setCurrentSelected({
-                              obj: adminC,
-                              status: true,
-                            });
-                          }}
-                          className="px-3 py-3 font-bold text-center cursor-pointer text-red-500 hover:underline ">
+                              setCurrentSelected({
+                                obj: adminC,
+                                status: true,
+                              });
+                            }}
+                            className="px-3 py-3 font-bold text-center cursor-pointer text-red-500 hover:underline "
+                          >
                             অভিযোগ
                           </td>
                         </tr>
@@ -382,8 +405,8 @@ const SubAdminPage = () => {
         </div>
       </div>
       <div className="w-[90%] mx-auto mb-2">
-    <FooterSection/>
-    </div>
+        <FooterSection />
+      </div>
     </AdminLayout>
   );
 };

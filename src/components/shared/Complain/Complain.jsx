@@ -1,59 +1,50 @@
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoLogoWhatsapp } from "react-icons/io";
-import base_url from "../../../utils/url";
+import base_url from "../../../utils/baseUrl";
 
 const Complain = (props) => {
   const [upLevel1, setUpLevel1] = useState({});
   const [upLevel2, setUpLevel2] = useState({});
   const [upLevel3, setUpLevel3] = useState({});
-  const [lastLevel,setLastLevel]=useState(null)
+  const [lastLevel, setLastLevel] = useState(null);
   const [count, setCount] = useState(0);
-  const [showSeeMore,setShowSeeMore]=useState(true)
- const [click,setClick]=useState(1)
+  const [showSeeMore, setShowSeeMore] = useState(true);
+  const [click, setClick] = useState(1);
 
-  const fetchCurrentObjDetails =  () => {
+  const fetchCurrentObjDetails = () => {
     setUpLevel1({});
-     axios
+    axios
       .get(`${base_url}/admins/${props?.currentSelected?.obj?.input_id}`)
       .then((res) => {
         if (res?.data?.msg == "success") {
-          
           setUpLevel1(res?.data?.admin?.super);
         }
       });
   };
 
-  const fetchLevel1Data =  () => {
+  const fetchLevel1Data = () => {
     if (upLevel1?.id) {
-       axios
-        .get(`${base_url}/admins/${upLevel1?.input_id}`)
-        .then((res) => {
-          if (res?.data?.msg == "success") {
-           
-            setUpLevel2(res?.data?.admin?.super);
-          }
-        });
+      axios.get(`${base_url}/admins/${upLevel1?.input_id}`).then((res) => {
+        if (res?.data?.msg == "success") {
+          setUpLevel2(res?.data?.admin?.super);
+        }
+      });
     }
   };
 
-  const fetchLevel2Data =  () => {
+  const fetchLevel2Data = () => {
     if (upLevel2?.id) {
-       axios
-        .get(`${base_url}/admins/${upLevel2?.input_id}`)
-        .then((res) => {
-          if (res?.data?.msg == "success") {
-            
-            setUpLevel3(res?.data?.admin?.super);
-          }
-        });
+      axios.get(`${base_url}/admins/${upLevel2?.input_id}`).then((res) => {
+        if (res?.data?.msg == "success") {
+          setUpLevel3(res?.data?.admin?.super);
+        }
+      });
     }
   };
 
   useEffect(() => {
-  
     //  setUpLevel1({})
     setUpLevel2({});
     setUpLevel3({});
@@ -61,33 +52,25 @@ const Complain = (props) => {
     setCount(0);
   }, [props?.currentSelected?.obj?.id]);
 
-  useEffect(()=>{
-
-    if(props?.from=='agent'){
-     
-      if(click==3){
-       
-        setShowSeeMore(false)
+  useEffect(() => {
+    if (props?.from == "agent") {
+      if (click == 3) {
+        setShowSeeMore(false);
       }
-    }else if(props?.from=='superAgent'){
-    
-      if(click==2){
-        setShowSeeMore(false)
+    } else if (props?.from == "superAgent") {
+      if (click == 2) {
+        setShowSeeMore(false);
       }
-    }else if(props?.from=='subAdmin'){
-     
-      if(click==1){
-        setShowSeeMore(false)
+    } else if (props?.from == "subAdmin") {
+      if (click == 1) {
+        setShowSeeMore(false);
       }
-    }else{
-     
-      if(click==0){
-        setShowSeeMore(false)
+    } else {
+      if (click == 0) {
+        setShowSeeMore(false);
       }
-    }   
-  },[click])
-
-  
+    }
+  }, [click]);
 
   return (
     <div>
@@ -159,8 +142,7 @@ const Complain = (props) => {
                     <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
                       <p className="text-black">
                         উনার {upLevel1?.profile?.type} এর{" "}
-                        {upLevel1?.profile?.type}{" "}
-                        আইডিঃ{" "}
+                        {upLevel1?.profile?.type} আইডিঃ{" "}
                       </p>
                     </div>
                     <div className=" w-[50%] h-full flex justify-center items-center text-white">
@@ -197,8 +179,7 @@ const Complain = (props) => {
                         <div className=" w-[50%] h-full flex justify-center items-center text-white border-r-2 border-black">
                           <p className="text-black">
                             উনার {upLevel2?.profile?.type} এর{" "}
-                            {upLevel2?.profile?.type}{" "}
-                            আইডিঃ{" "}
+                            {upLevel2?.profile?.type} আইডিঃ{" "}
                           </p>
                         </div>
                         <div className=" w-[50%] h-full flex justify-center items-center text-white">
@@ -277,15 +258,14 @@ const Complain = (props) => {
                       {/* 2nd row end */}
                     </div>
                   )}
-                 
-                   {
-                    showSeeMore && (
-                      <p
+
+                  {showSeeMore && (
+                    <p
                       className="inline-block cursor-pointer text-red-800 bg-blue-300 px-2 py-1 m-2 rounded-md"
                       onClick={() => {
-                       setClick(click+1)
-                        if(count>3){
-                          toast.error('No more Admin')
+                        setClick(click + 1);
+                        if (count > 3) {
+                          toast.error("No more Admin");
                         }
                         if (count == 0) {
                           fetchLevel1Data();
@@ -297,9 +277,7 @@ const Complain = (props) => {
                     >
                       See more...
                     </p>
-                    )
-                   }
-                 
+                  )}
                 </div>
               )}
             </div>

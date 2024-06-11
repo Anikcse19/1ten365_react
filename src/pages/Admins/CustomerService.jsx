@@ -4,7 +4,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { images } from "../../../config";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
+import base_url from "../../utils/baseUrl";
 
 const CustomerServicePage = () => {
   const [services, setServices] = useState([]);
@@ -13,8 +13,8 @@ const CustomerServicePage = () => {
     axios
       .get(`${base_url}/types`, {
         headers: {
-          "Accept": "application/json",
-          "Content-Type":'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
       })
       .then((res) => setServices(res?.data?.types));
@@ -23,12 +23,11 @@ const CustomerServicePage = () => {
   return (
     <AdminLayout>
       <div className="bg-white">
-        <div className="lg:w-[76%] mx-auto bg-white p-5 my-5 lg:my-10">
+        <div className="lg:w-[90%] mx-auto bg-white p-5 my-5 lg:my-10">
           <div className="w-[100%]">
             <img
               width={1920}
               height={1080}
-             
               className="w-full h-full object-cover"
               src={images.custServicePoster}
               alt="poster"
@@ -94,7 +93,7 @@ const CustomerServicePage = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-[76%] mx-auto mb-2">
+      <div className="w-[90%] mx-auto mb-2">
         <FooterSection />
       </div>
     </AdminLayout>

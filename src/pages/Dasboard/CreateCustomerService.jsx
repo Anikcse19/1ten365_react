@@ -1,27 +1,25 @@
-
 import axios from "axios";
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/shared/Dashboard/DashboardLayout";
-import base_url from "../../utils/url";
-
-
-
+import base_url from "../../utils/baseUrl";
 
 const CustomService = () => {
   const [adminId, setAdminId] = useState();
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerWp, setCustomerWP] = useState("");
-  const [quickAgent,setQuickAgent]=useState({})
+  const [quickAgent, setQuickAgent] = useState({});
   const router = useNavigate();
 
-  const token=localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios.get(`${base_url}/quick-agent`).then(res=>setQuickAgent(res?.data?.quickagent))
+    axios
+      .get(`${base_url}/quick-agent`)
+      .then((res) => setQuickAgent(res?.data?.quickagent));
     fetch(`${base_url}/admins?type=এজেন্ট`, {
       headers: {
         "Content-Type": "application/json",
@@ -32,8 +30,6 @@ const CustomService = () => {
       .then((data) => setAdminId(data?.admins))
       .catch((error) => console.error("Error fetching data:", error)); // Handle fetch errors
   }, []);
-
-
 
   const handleTypeChange = (event) => {
     const data = { id: Number(event.target.value) };
@@ -46,33 +42,32 @@ const CustomService = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json()).then(data=>{
-        if(data.msg=='success'){
-          toast.success('Created new quick agent',{
-            position:'top-right'
-          })
-        }else{
-          toast.error(`${data.error}`,{
-            position:'top-right'
-          })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msg == "success") {
+          toast.success("Created new quick agent", {
+            position: "top-right",
+          });
+        } else {
+          toast.error(`${data.error}`, {
+            position: "top-right",
+          });
         }
       })
       .catch((error) => {
         console.error("Error posting data:", error);
-        toast.error(error,{
-          position:'top-right'
-        })
+        toast.error(error, {
+          position: "top-right",
+        });
       });
   };
 
   const handleCreateCustomerService = () => {
-    
-
     const data = {
       name: customerName,
       phone: customerPhone,
       wa_link: customerWp,
-    }; 
+    };
 
     axios
       .post(`${base_url}/types/create`, data, {
@@ -83,10 +78,9 @@ const CustomService = () => {
         },
       })
       .then((res) => {
-        if(res?.data?.msg=='success'
-        ){
-          toast.success('created customer service')
-          router('/admins/customerService')
+        if (res?.data?.msg == "success") {
+          toast.success("created customer service");
+          router("/admins/customerService");
         }
       });
   };
@@ -103,9 +97,14 @@ const CustomService = () => {
 
         {/* Select Quick Agent */}
         <div className="lg:w-[45%] mx-auto mt-10 bg-gray-200 p-5">
-          <span className="my-4 block">Quick Agent: <p className="text-green-600 text-2xl font-bold inline">{quickAgent?.name}</p></span>
+          <span className="my-4 block">
+            Quick Agent:{" "}
+            <p className="text-green-600 text-2xl font-bold inline">
+              {quickAgent?.name}
+            </p>
+          </span>
           <label className="text-slate-900 font-bold">Select Quick Agent</label>
-          <select  onChange={handleTypeChange} className={inputFieldSTyle}>
+          <select onChange={handleTypeChange} className={inputFieldSTyle}>
             <option value="">Select Agent</option>
             {adminId?.map((item, i) => (
               <option key={i} value={item.id}>

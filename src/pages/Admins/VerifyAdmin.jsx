@@ -7,7 +7,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
+import base_url from "../../utils/baseUrl";
 
 const VerifyAdmin = () => {
   const [adminType, setAdminType] = useState("");
@@ -15,8 +15,8 @@ const VerifyAdmin = () => {
   const [searchedResult, setSearchedResult] = useState({});
   const [types, setTypes] = useState([]);
   const [userNotFound, setUserNotFound] = useState(false);
-  
-  const navigate=useNavigate()
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${base_url}/admins/types`, {
@@ -51,15 +51,15 @@ const VerifyAdmin = () => {
   return (
     <AdminLayout>
       <div>
-       {/* agent/admin search start */}
-       <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
-            <div>
-              <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
-                এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
-              </p>
-            </div>
+        {/* agent/admin search start */}
+        <div className=" lg:w-[90%] mx-auto bg-white flex flex-col justify-center md:items-center gap-5 p-5 ">
+          <div>
+            <p className="text-2xl lg:text-xl text-center font-semibold lg:font-bold">
+              এজেন্ট এর আইডি নাম্বার দিয়ে খুজুনঃ
+            </p>
+          </div>
 
-            <div className="bg-gray-200 px-12 py-3 rounded-md shadow-lg flex flex-col justify-center md:items-center gap-3">
+          <div className="bg-gray-200 px-12 py-3 rounded-md shadow-lg flex flex-col justify-center md:items-center gap-3">
             <div className="flex flex-col ">
               <label htmlFor="" className="text-base lg:text-lg mb-1">
                 Agent Type:
@@ -95,9 +95,9 @@ const VerifyAdmin = () => {
                 Submit
               </button>
             </div>
-            </div>
           </div>
-          {/* agent/admin search end */}
+        </div>
+        {/* agent/admin search end */}
 
         {/* show search result start */}
         {/* if user not found */}
@@ -210,7 +210,7 @@ const VerifyAdmin = () => {
         )}
         {/* show search result end */}
       </div>
-      <div className="w-[90%] md:w-[76%] mx-auto my-2">
+      <div className="w-[90%] mx-auto my-2">
         <FooterSection />
       </div>
     </AdminLayout>

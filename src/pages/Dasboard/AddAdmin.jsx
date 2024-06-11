@@ -1,26 +1,22 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/shared/Dashboard/DashboardLayout";
-import base_url from "../../utils/url";
-
-
+import base_url from "../../utils/baseUrl";
 
 const AddAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const [types, setTypes] = useState();
   const [selectedType, setSelectedType] = useState("");
-  const nameRef=useRef()
-  const navigate=useNavigate()
+  const nameRef = useRef();
+  const navigate = useNavigate();
 
   // const filteredAdmins = types?.filter((item) => item !== "সাইট এডমিন");
 
-  const token=localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    
     fetch(`${base_url}/admins/types`, {
       headers: {
         Accept: "application/json",
@@ -41,7 +37,6 @@ const AddAdmin = () => {
   useEffect(() => {
     fetch(
       `${base_url}/admins?type=${
-        
         selectedType === "সাব এডমিন"
           ? "এডমিন"
           : selectedType === "সুপার এজেন্ট"
@@ -84,19 +79,16 @@ const AddAdmin = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-       
-        if(data.msg=='success'){
-          
-          toast.success('Successfully added',{
-            position:"top-right"
-          })
-            reset();
-            navigate('/dashboard/viewAdmins')
-
-        }else{
-          toast.error(`${data.error} ? ${data.error} : ${data.msg}`,{
-            position:"top-right"
-          })
+        if (data.msg == "success") {
+          toast.success("Successfully added", {
+            position: "top-right",
+          });
+          reset();
+          navigate("/dashboard/viewAdmins");
+        } else {
+          toast.error(`${data.error} ? ${data.error} : ${data.msg}`, {
+            position: "top-right",
+          });
         }
         // Handle success response here
       })
@@ -112,18 +104,20 @@ const AddAdmin = () => {
   return (
     <DashboardLayout>
       <div className="">
-      <div className="w-full">
-            <p className=" text-lg lg:text-2xl underline font-semibold">Add Admins</p>
-          </div>
+        <div className="w-full">
+          <p className=" text-lg lg:text-2xl underline font-semibold">
+            Add Admins
+          </p>
+        </div>
 
         <section className="mt-8 w-[100%] md:w-[80%] p-6 mx-auto bg-gray-300 rounded-md shadow-md ">
-                  <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
               {/* Name */}
               <div>
                 <label className="text-gray-800 ">Name</label>
                 <input
-                ref={nameRef}
+                  ref={nameRef}
                   type="text"
                   placeholder="name"
                   {...register("name")}
@@ -187,12 +181,10 @@ const AddAdmin = () => {
               <div className={`${selectedType === "এডমিন" ? "hidden" : ""}`}>
                 <label className="text-gray-800 ">Supervisor</label>
                 <select {...register("admin_id")} className={inputFieldSTyle}>
-                  
                   <option hidden>
                     Select-
-                    {
-                  selectedType === "এডমিন"
-                    ? "Site Admin" 
+                    {selectedType === "এডমিন"
+                      ? "Site Admin"
                       : selectedType === "সাব এডমিন"
                       ? "Admin"
                       : selectedType === "সুপার এজেন্ট"
@@ -201,16 +193,13 @@ const AddAdmin = () => {
                       ? "Super Agent"
                       : ""}
                   </option>
-                  {
-                    !selectedType && (
-                      <option value="">Select type first</option>
-                    )
-                  }
-                  {selectedType && adminId?.map((item, i) => (
-                    <option key={i} value={item?.id}>
-                     {`${item?.name} - ${item?.profile?.type}`}
-                    </option>
-                  ))}
+                  {!selectedType && <option value="">Select type first</option>}
+                  {selectedType &&
+                    adminId?.map((item, i) => (
+                      <option key={i} value={item?.id}>
+                        {`${item?.name} - ${item?.profile?.type}`}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>

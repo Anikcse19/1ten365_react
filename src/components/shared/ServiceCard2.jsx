@@ -4,32 +4,38 @@ const ServiceCard2 = ({ item }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="md:border flex flex-col  gap-y-5 p-1">
-      <h1 onClick={()=>navigate(`${item?.link}`)} className=" hover:text-red-700 text-2xl  font-semibold">{item.title}</h1>
-      <div className="relative">
-       {
-        item?.img && (
-            <img
-            src={item.img}
-            alt="Next Image"
-            width={1920}
-            height={1080}
-            onClick={() => navigate(`${item?.link}`)}
-            className="object-cover w-full h-full cursor-pointer"
-          />
-        )
-       }
-
-        <Link
-          to={`${item?.link}`}
-          className="absolute -bottom-2.5 left-5 bg-white border border-slate-500 px-2 py-[2px] text-xs hover:bg-red-700 hover:text-white uppercase"
+    <div className="md:border flex flex-col justify-between p-1">
+      <div className="flex flex-col gap-y-2">
+        <h1
+          onClick={() => navigate(`${item?.link}`)}
+          className=" hover:text-red-700 text-2xl  font-semibold"
         >
-          Agent
-        </Link>
+          {item.title}
+        </h1>
+        <div className="relative">
+          {item?.img && (
+            <img
+              src={item.img}
+              alt="Next Image"
+              width={1920}
+              height={1080}
+              onClick={() => navigate(`${item?.link}`)}
+              className="object-cover w-full h-full cursor-pointer"
+            />
+          )}
+
+          {item?.img && (
+            <Link
+              to={`${item?.link}`}
+              className="absolute -bottom-2.5 left-5 bg-white border border-slate-500 px-2 py-[2px] text-xs hover:bg-red-700 hover:text-white uppercase"
+            >
+              Agent
+            </Link>
+          )}
+        </div>
+
+        <p className="text-sm text-center mt-3">{item.des}</p>
       </div>
-
-      <p className="text-sm text-center">{item.des}</p>
-
       <div className="w-full">
         <button
           onClick={() => navigate(`${item?.link}`)}

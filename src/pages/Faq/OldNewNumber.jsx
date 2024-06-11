@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import { images } from "../../../config";
 import FooterSection from "../../components/shared/Footer/FooterSection";
 import AdminLayout from "../../components/shared/Layout/AdminLayout";
-import base_url from "../../utils/url";
-
-
-
+import base_url from "../../utils/baseUrl";
 
 const OldNewNumber = () => {
   const [agents, setAgents] = useState([]);
-
 
   useEffect(() => {
     fetch(`${base_url}/admins?type=এজেন্ট`, {
@@ -30,8 +26,8 @@ const OldNewNumber = () => {
         <div className="w-full  mt-12">
           {/* poster start */}
           <p className="mb-5 text-4xl md:text-4xl px-5 ">
-          এজেন্টের এর নতুন পুরাতন নাম্বার?
-            </p>
+            এজেন্টের এর নতুন পুরাতন নাম্বার?
+          </p>
           <div className="w-[100%] md:w-[80%] mx-auto p-5 my-10">
             <img
               width={400}
@@ -44,13 +40,16 @@ const OldNewNumber = () => {
           {/* poster end */}
 
           {/* user alert start*/}
-          <div className="w-[100%] md:w-[80%] mx-2 md:mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
+          <div className="w-[100%] md:w-[90%] mx-2 md:mx-auto bg-white border-l-4 border-gray-500  p-5 my-10">
             <p className="text-base lg:text-xl font-bold">
               দয়া করে একটু নির্দেশনা গুলো পড়ে নিনঃ
             </p>
             <p>
               **প্রতারনার হাত থেকে বাচতে সবার আগে ভিজিট করুন 1Ten সাইটঃ
-              1ten365.COM <br />
+              <p className="cursor-pointer text-blue-500 inline">
+                1ten365.COM
+              </p>{" "}
+              <br />
               **হোয়াটসাপ ব্যাতিত অন্য কোন এপ এর মাধ্যমে যোগাযোগ বা লেনদেন করা
               যাবে না এবং করলে তা গ্রহনযোগ্য হবে না। <br />
               **এজেন্ট পাসোয়ার্ড পরিবর্তন করে দিলে - আপনি একাউন্টে ঢুকে আবার
@@ -78,13 +77,22 @@ const OldNewNumber = () => {
               <table className="w-full">
                 <thead className="sticky top-0 text-base bg-gray-400 w-full">
                   <tr className="border-b border-orange-700 ">
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       NEW ID
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       OLD NUMBER
                     </th>
-                    <th scope="col" className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base ">
+                    <th
+                      scope="col"
+                      className="px-3 md:px-10 py-1 md:py-3 text-xs md:text-base "
+                    >
                       NEW NUMBER
                     </th>
                   </tr>
@@ -117,7 +125,7 @@ const OldNewNumber = () => {
           {/* admin table end */}
         </div>
       </div>
-      <div className="w-[90%] md:w-[76%] mx-auto my-2">
+      <div className="w-[90%] mx-auto my-2">
         <FooterSection />
       </div>
     </AdminLayout>
